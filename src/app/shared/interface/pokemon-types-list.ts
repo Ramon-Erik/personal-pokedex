@@ -1,4 +1,4 @@
-export interface IPokemonTypesList {
+export interface IPokemonApiRequest {
   count: number;
   next: string;
   previous: null;
