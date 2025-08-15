@@ -16,38 +16,26 @@
       <label for="filterTypesId">
         Tipos
         <select name="filterTypes" id="filterTypesId">
-            @for (item of typesList()?.results; track $index) {
-                <option>{{item.name}}</option>
-            }    
-        </select
-      ></label>
-      <label for="filterWeaknesessId"
-        >Fraquezas<select
-          name="filterWeaknesess"
-          id="filterWeaknesessId"
-        >
-        @for (item of typesList()?.results; track $index) {
-                <option>{{item.name}}</option>
-            }    
-        </select
-      ></label>
+          @for (item of typesList()?.results; track $index) {
+          <option>{{ item.name }}</option>
+          }
+        </select></label
+      >
+      <label for="filterWeaknessesId"
+        >Fraquezas<select name="filterWeaknesses" id="filterWeaknessesId">
+          @for (item of typesList()?.results; track $index) {
+          <option>{{ item.name }}</option>
+          }
+        </select></label
+      >
       <label for="filterAbilityId"
-        >Habilidade<select
-          name="filterAbility"
-          id="filterAbilityId"
-        ></select
+        >Habilidade<select name="filterAbility" id="filterAbilityId"></select
       ></label>
       <label for="filterHeightId"
-        >Altura<select
-          name="filterHeight"
-          id="filterHeightId"
-        ></select
+        >Altura<select name="filterHeight" id="filterHeightId"></select
       ></label>
       <label for="filterWeightId"
-        >Peso<select
-          name="filterWeight"
-          id="filterWeightId"
-        ></select
+        >Peso<select name="filterWeight" id="filterWeightId"></select
       ></label>
     </div>
   </form>
