@@ -28,7 +28,7 @@ export class PokeApi {
   }
   public httpAbilitiesList$(): Observable<IPokemonApiRequest> {
     this.#setAbilitiesList.set(null);
-    return this.#http.get<IPokemonApiRequest>(`${this.#url}/type/`).pipe(
+    return this.#http.get<IPokemonApiRequest>(`${this.#url}/ability/`).pipe(
       shareReplay(),
       tap((res) => this.#setAbilitiesList.set(res))
     );
