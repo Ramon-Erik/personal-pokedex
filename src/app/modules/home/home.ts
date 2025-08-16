@@ -10,8 +10,10 @@ import { PokeApi } from '../../core/pokedex/poke-api';
 export class Home implements OnInit {
   #pokeApiService = inject(PokeApi)
   public typesList = this.#pokeApiService.getTypesList
+  public abilitiesList = this.#pokeApiService.getAbilitiesList
 
   ngOnInit(): void {
     this.#pokeApiService.httpTypesList$().subscribe()
+    this.#pokeApiService.httpAbilitiesList$().subscribe()
   }
 }
