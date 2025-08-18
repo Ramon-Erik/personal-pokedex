@@ -1,10 +1,9 @@
 import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { PokeApi } from '../../../core/pokedex/poke-api';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-item',
-  imports: [AsyncPipe],
+  imports: [],
   templateUrl: './pokemon-item.html',
   styleUrl: './pokemon-item.scss',
 })
