@@ -50,4 +50,13 @@ export class PokeApi {
       tap(res => this.#setPokemonList.set(res))
     )
   }
+
+    
+  #setPokemon = signal<any>(null);
+  get getPokemon() {
+    return this.#setPokemon.asReadonly();
+  }
+  public httpPokemon$(pokemon: string): Observable<any> {
+    return this.#http.get<any>(pokemon)
+  }
 }

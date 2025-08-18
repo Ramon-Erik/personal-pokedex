@@ -1,13 +1,12 @@
-<div class="pokemon-card">
-  <div class="pokemon-image">
-    <img
-      src=""
-      [alt]="pokemon()"
-    />
+@if (!loading()) {
+  <div class="pokemon-card">
+    <div class="pokemon-image">
+      <img [src]="pokemon().sprites.front_default" [alt]="pokemon().name" />
+    </div>
+    <div class="pokemon-name">
+      <span>
+        {{ pokemon().name }}
+      </span>
+    </div>
   </div>
-  <div class="pokemon-name">
-    <span>
-      {{ pokemon() }}
-    </span>
-  </div>
-</div>
+}
