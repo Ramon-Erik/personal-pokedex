@@ -45,7 +45,7 @@ export class PokeApi {
     } else {
       customUrl = `${this.#url}/pokemon`
     } 
-    return this.#http.get<IPokemonApiRequest>(`${this.#url}/pokemon?$offset=${range?.offset}&limit=${range?.limit}`).pipe(
+    return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
       shareReplay(),
       tap(res => this.#setPokemonList.set(res))
     )
