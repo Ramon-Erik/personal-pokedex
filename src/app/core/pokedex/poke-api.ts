@@ -18,7 +18,7 @@ export class PokeApi {
     this.#setTypesList.set(null);
     return this.#http.get<IPokemonApiRequest>(`${this.#url}/type/`).pipe(
       shareReplay(),
-      tap((res) => this.#setTypesList.set(res))
+      tap(res => this.#setTypesList.set(res))
     );
   }
 
@@ -32,5 +32,22 @@ export class PokeApi {
       shareReplay(),
       tap((res) => this.#setAbilitiesList.set(res))
     );
+  }
+
+  #setPokemonList = signal<IPokemonApiRequest | null>(null);
+  get getPokemonList() {
+    return this.#setPokemonList.asReadonly();
+  }
+  public httpPokemonList$(range: { offset: number; limit: number } | null): Observable<IPokemonApiRequest> {
+    let customUrl: string
+    if (range) {
+      customUrl = `${this.#url}/pokemon?$offset=${range?.offset}&limit=${range?.limit}`
+    } else {
+      customUrl = `${this.#url}/pokemon`
+    } 
+    return this.#http.get<IPokemonApiRequest>(`${this.#url}/pokemon?$offset=${range?.offset}&limit=${range?.limit}`).pipe(
+      shareReplay(),
+      tap(res => this.#setPokemonList.set(res))
+    )
   }
 }
