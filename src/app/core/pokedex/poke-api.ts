@@ -10,7 +10,7 @@ export class PokeApi {
   #http = inject(HttpClient);
   #url = 'https://pokeapi.co/api/v2';
 
-  #setTypesList = signal< IPokemonApiRequest | null>(null);
+  #setTypesList = signal<IPokemonApiRequest | null>(null);
   get getTypesList() {
     return this.#setTypesList.asReadonly();
   }
@@ -22,7 +22,7 @@ export class PokeApi {
     );
   }
 
-  #setAbilitiesList = signal< IPokemonApiRequest | null>(null);
+  #setAbilitiesList = signal<IPokemonApiRequest | null>(null);
   get getAbilitiesList() {
     return this.#setAbilitiesList.asReadonly();
   }
