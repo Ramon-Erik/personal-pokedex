@@ -15,42 +15,50 @@
   <form>
     <div class="pokeInfoSearch">
       <label for="pokeInfoId"
-        ><input type="text" name="pokeInfo" id="pokeInfoId"
-      /></label>
-      <button type="button">procurar</button>
+        ><input type="text" name="pokeInfo" id="pokeInfoId" autocomplete="off" placeholder="Digite um nome ou id de pokemon"
+      />
+      <button type="button">
+        <img src="icons/search.svg" alt="pesquisar" width="35" height="35">
+      </button>
+    </label>
     </div>
     <div class="filters">
       <label for="filterTypesId">
-        Tipos
         <select name="filterTypes" id="filterTypesId">
+        <option value="invalid">Tipos</option>
           @for (item of typesList()?.results; track $index) {
           <option>{{ item.name }}</option>
           }
         </select></label
       >
       <label for="filterWeaknessesId"
-        >Fraquezas<select name="filterWeaknesses" id="filterWeaknessesId">
+        ><select name="filterWeaknesses" id="filterWeaknessesId">
+        <option value="invalid">Fraquezas</option>
           @for (item of typesList()?.results; track $index) {
           <option>{{ item.name }}</option>
           }
         </select></label
       >
       <label for="filterAbilityId"
-        >Habilidade<select name="filterAbility" id="filterAbilityId">
+        ><select name="filterAbility" id="filterAbilityId">
+        <option value="invalid">habilidades</option>
           @for (item of abilitiesList()?.results; track $index) {
           <option>{{ item.name }}</option>
           }
         </select></label
       >
       <label for="filterHeightId"
-        >Altura<select name="filterHeight" id="filterHeightId">
+        ><select name="filterHeight" id="filterHeightId">
+        <option value="invalid">Altura</option>
           <option>pequeno</option>
           <option>normal</option>
           <option>grande</option>
         </select></label
       >
       <label for="filterWeightId"
-        >Peso<select name="filterWeight" id="filterWeightId">
+        ><select name="filterWeight" id="filterWeightId">
+        <option value="invalid">Peso</option>
+
           <option>leve</option>
           <option>normal</option>
           <option>pesado</option>
