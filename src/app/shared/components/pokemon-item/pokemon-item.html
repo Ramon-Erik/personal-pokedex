@@ -1,8 +1,8 @@
 @if (!loading()) {
-  <div class="pokemon-card">
-    <div class="pokemon-image">
+  <div class="pokemon-card {{pokemon().types[0].type.name}}">
+    <button class="pokemon-image">
       <img [src]="pokemon().sprites.front_default" [alt]="pokemon().name" width="200" height="200"/>
-    </div>
+    </button>
     <div class="pokemon-name">
       <span>
         {{ pokemon().name }}

@@ -3,7 +3,11 @@
     width: fit-content;
     height: 250px;
     padding: 10px;
-    border: 1px solid black;
     border-radius: 1rem;
+
+    button {
+      background: none;
+      border: transparent;
+    }
   }
 }
