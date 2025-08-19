@@ -1,4 +1,29 @@
 :host {
+  header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    
+    .title {
+      position: relative;
+      flex: 1;
+      height: 120px;
+      text-transform: uppercase;
+
+      h1 {
+        position: absolute;
+        top: 50%;
+        left: calc(50% + 40px - 1.5rem);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .account {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
   app-pokemon-list {
     display: flex;
     justify-content: center;
