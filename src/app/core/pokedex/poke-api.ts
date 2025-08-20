@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Observable, shareReplay, tap } from 'rxjs';
+import { forkJoin, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { IPokemonApiRequest } from '../../shared/interface/pokemon-types-list';
 
 @Injectable({
@@ -32,17 +32,30 @@ export class PokeApi {
     );
   }
 
-  #setPokemonList = signal<IPokemonApiRequest | null>(null);
+  #setPokemonList = signal<any>([]);
   get getPokemonList() {
     return this.#setPokemonList.asReadonly();
   }
-  public httpPokemonList$(range: { offset: number; limit: number } | null): Observable<IPokemonApiRequest> {
+  public httpPokemonList$(range: { offset: number; limit: number } | null): Observable<any> {
     let customUrl: string
     if (range) {
       customUrl = `${this.#url}/pokemon?offset=${range?.offset}&limit=${range?.limit}`
     } else {
       customUrl = `${this.#url}/pokemon`
     } 
+    if (this.#setPokemonList().length === 0) {
+      return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
+        switchMap(res => {
+          const requests = res.results.map(p => this.#http.get<any>(p.url))
+          return forkJoin(requests)
+        }),
+        tap(details => {
+          console.log("detalhes adicionados na lista");
+          
+          this.#setPokemonList.set(details)
+        })
+      )
+    }
     return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
       tap(res => this.#setPokemonList.set(res))
     )

@@ -15,6 +15,16 @@ export class PokemonList implements OnInit {
 
   public pokemonList = this.#pokeApiService.getPokemonList
 
+  public next() {
+    console.log('next');
+
+  }
+
+  public prev() {
+    console.log('prev');
+    
+  }
+
   ngOnInit(): void {
     this.#pokeApiService.httpPokemonList$(null).subscribe()
   }

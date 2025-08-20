@@ -28,7 +28,6 @@
     width: calc(100% - 1.5rem);
     max-width: 900px;
     margin: auto;
-    // background: #eee;
 
     form {
       .filters {
@@ -98,14 +97,5 @@
 
       } 
     }
-  }
-  
-  app-pokemon-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.1rem;
-    width: 100%;
-    margin-top: 1.2rem;
   }
 }

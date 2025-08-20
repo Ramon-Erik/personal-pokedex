@@ -7,19 +7,14 @@ import { PokeApi } from '../../../core/pokedex/poke-api';
   templateUrl: './pokemon-item.html',
   styleUrl: './pokemon-item.scss',
 })
-export class PokemonItem implements OnInit {
+export class PokemonItem {
   #apiService = inject(PokeApi);
 
   public loading = signal(true);
   public pokemon = signal<any>(null);
-  @Input({ required: true }) set pokemonUrl(url: string) {
-    this.pokemon.set(url);
+  @Input({ required: true }) set pokemonData(pokemonData: string) {
+    this.pokemon.set(pokemonData);
+    this.loading.set(false)
   }
 
-  ngOnInit(): void {
-    this.#apiService.httpPokemon$(this.pokemon()).subscribe((res) => {
-      this.pokemon.set(res);
-      this.loading.set(false)
-    });
-  }
 }
