@@ -1,16 +1,9 @@
 <div class="container">
-  <div class="paginationControls">
-    <button class="prev" (click)="prev()">
-      <img src="icons/arrow-back.png" alt="seta de voltar" width="30" height="30">
-    </button>
-    <button class="next" (click)="next()">
-      <img src="icons/arrow-next.png" alt="seta de próximo" width="30" height="30">
-
-    </button>
-  </div>
+  <app-pagination [setTotalItems]="filteredPokemonList().length" [setItemsPerPage]="itemsPerPage" [setCurrentPage]="currentPage"/>
   <div class="pokemonList">
-    @for (pokemon of pokemonList(); track pokemon.id) {
-    <app-pokemon-item [pokemonData]="pokemon" />
+    @for (pokemon of slicedList(); track pokemon.id) {
+    <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />
     }
   </div>
+  <app-pagination [setTotalItems]="filteredPokemonList().length" [setItemsPerPage]="itemsPerPage" [setCurrentPage]="currentPage"/>
 </div>
