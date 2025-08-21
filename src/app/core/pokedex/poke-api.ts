@@ -32,7 +32,7 @@ export class PokeApi {
     );
   }
 
-  #setPokemonList = signal<any>([]);
+  #setPokemonList = signal<Array<any>>([]);
   get getPokemonList() {
     return this.#setPokemonList.asReadonly();
   }
@@ -41,24 +41,18 @@ export class PokeApi {
     if (range) {
       customUrl = `${this.#url}/pokemon?offset=${range?.offset}&limit=${range?.limit}`
     } else {
-      customUrl = `${this.#url}/pokemon`
+      customUrl = `${this.#url}/pokemon?limit=1000000&offset=0`
     } 
-    if (this.#setPokemonList().length === 0) {
       return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
         switchMap(res => {
-          const requests = res.results.map(p => this.#http.get<any>(p.url))
+          const requests = res.results.map(p => this.#http.get<{}>(p.url))
           return forkJoin(requests)
         }),
         tap(details => {
           console.log("detalhes adicionados na lista");
-          
           this.#setPokemonList.set(details)
         })
       )
-    }
-    return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
-      tap(res => this.#setPokemonList.set(res))
-    )
   }
     
   #setPokemon = signal<any>(null);
