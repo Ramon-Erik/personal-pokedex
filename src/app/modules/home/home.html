@@ -12,19 +12,19 @@
   </div>
 </header>
 <main>
-  <form>
+  <form #form="ngForm" name="filtersForm" (ngSubmit)="changeListFilters(pokeId.value, types.value, weakness.value, ability.value, height.value, weight.value)">
     <div class="pokeInfoSearch">
       <label for="pokeInfoId"
-        ><input type="text" name="pokeInfo" id="pokeInfoId" autocomplete="off" placeholder="Digite um nome ou id de pokemon"
+        ><input type="text" name="pokeInfo" #pokeId id="pokeInfoId" autocomplete="off" placeholder="Digite um nome ou id de pokemon"
       />
-      <button type="button">
+      <button type="submit">
         <img src="icons/search.svg" alt="pesquisar" width="35" height="35">
       </button>
     </label>
     </div>
     <div class="filters">
       <label for="filterTypesId">
-        <select name="filterTypes" id="filterTypesId">
+        <select name="filterTypes" #types id="filterTypesId">
         <option value="invalid">Tipos</option>
           @for (item of typesList()?.results; track $index) {
           <option>{{ item.name }}</option>
@@ -32,7 +32,7 @@
         </select></label
       >
       <label for="filterWeaknessesId"
-        ><select name="filterWeaknesses" id="filterWeaknessesId">
+        ><select name="filterWeaknesses" #weakness id="filterWeaknessesId">
         <option value="invalid">Fraquezas</option>
           @for (item of typesList()?.results; track $index) {
           <option>{{ item.name }}</option>
@@ -40,7 +40,7 @@
         </select></label
       >
       <label for="filterAbilityId"
-        ><select name="filterAbility" id="filterAbilityId">
+        ><select name="filterAbility" #ability id="filterAbilityId">
         <option value="invalid">habilidades</option>
           @for (item of abilitiesList()?.results; track $index) {
           <option>{{ item.name }}</option>
@@ -48,7 +48,7 @@
         </select></label
       >
       <label for="filterHeightId"
-        ><select name="filterHeight" id="filterHeightId">
+        ><select name="filterHeight" #height id="filterHeightId">
         <option value="invalid">Altura</option>
           <option>pequeno</option>
           <option>normal</option>
@@ -56,7 +56,7 @@
         </select></label
       >
       <label for="filterWeightId"
-        ><select name="filterWeight" id="filterWeightId">
+        ><select name="filterWeight" #weight id="filterWeightId">
         <option value="invalid">Peso</option>
 
           <option>leve</option>
@@ -66,5 +66,5 @@
       >
     </div>
   </form>
-    <app-pokemon-list />
+    <app-pokemon-list [selectedFilters]="filters()"/>
 </main>
