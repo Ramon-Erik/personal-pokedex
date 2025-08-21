@@ -1,0 +1,11 @@
+@if (totalItems() > 0) {
+  <nav class="paginationControls">
+      <button class="prev" [disabled]="currentPage() === 1">
+        <img src="icons/arrow-back.png" alt="seta de voltar" width="30" height="30">
+      </button>
+      <span>Página {{currentPage()}} de {{totalPages()}}</span>
+      <button class="next" [disabled]="currentPage() === totalPages()">
+        <img src="icons/arrow-next.png" alt="seta de próximo" width="30" height="30">
+      </button>
+  </nav>
+}
