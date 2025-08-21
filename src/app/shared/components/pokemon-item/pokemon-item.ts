@@ -9,10 +9,11 @@ import { PokeApi } from '../../../core/pokedex/poke-api';
 })
 export class PokemonItem {
   #apiService = inject(PokeApi);
-
   public loading = signal(true);
+
   public pokemon = signal<any>(null);
-  @Input({ required: true }) set pokemonData(pokemonData: string) {
+  @Input({ required: true }) set pokemonData(pokemonData: any) {
+    
     this.pokemon.set(pokemonData);
     this.loading.set(false)
   }
