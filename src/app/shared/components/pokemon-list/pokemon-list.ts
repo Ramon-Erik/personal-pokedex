@@ -25,13 +25,6 @@ export class PokemonList implements OnInit {
   public itemsPerPage = 20;
   public currentPage = 1;
 
-  /**
-   * name
-   */
-  public name() {
-    
-  }
-
   public listFilters = signal<IFilters>({
     id: '',
     type: '',
