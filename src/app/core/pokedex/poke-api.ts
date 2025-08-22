@@ -41,7 +41,7 @@ export class PokeApi {
     if (range) {
       customUrl = `${this.#url}/pokemon?offset=${range?.offset}&limit=${range?.limit}`
     } else {
-      customUrl = `${this.#url}/pokemon?limit=1000000&offset=0`
+      customUrl = `${this.#url}/pokemon?limit=20&offset=0`
     } 
       return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
         switchMap(res => {
