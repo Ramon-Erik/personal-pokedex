@@ -1,70 +1,19 @@
 <header>
   <div class="title">
-    <h1><img src="titles-poke-font/pokedex.png" alt="pokedéx" /></h1>
-  </div>
-  <div class="account">
-    <img
-      src="https://avatar.oxro.io/avatar.svg?name=Eddie&background=ff6b6b&caps=3&bold=true&isRounded=true"
-      alt="profile"
-      width="40"
-      height="40"
-    />
+    <h1>
+      <img src="titles-poke-font/pokedex.png" alt="pokedéx" width="200" height="72" title="Pokédex" />
+    </h1>
   </div>
 </header>
 <main>
-  <form #form="ngForm" name="filtersForm" (ngSubmit)="changeListFilters(pokeId.value, types.value, weakness.value, ability.value, height.value, weight.value)">
-    <div class="pokeInfoSearch">
-      <label for="pokeInfoId"
-        ><input type="text" name="pokeInfo" #pokeId id="pokeInfoId" autocomplete="off" placeholder="Digite um nome ou id de pokemon"
-      />
-      <button type="submit">
-        <img src="icons/search.svg" alt="pesquisar" width="35" height="35">
+  <div class="searchPokemon">
+    <label for="pokemonId">
+      <input type="text" name="pokemonId" #pokeId id="pokemonId" autocomplete="off"
+        placeholder="Digite um nome ou id de pokemon" />
+      <button type="button" id="searchBtn">
+        <img src="icons/search.svg" alt="pesquisar" width="30" height="30" />
       </button>
     </label>
-    </div>
-    <div class="filters">
-      <label for="filterTypesId">
-        <select name="filterTypes" #types id="filterTypesId">
-        <option value="invalid">Tipos</option>
-          @for (item of typesList()?.results; track $index) {
-          <option>{{ item.name }}</option>
-          }
-        </select></label
-      >
-      <label for="filterWeaknessesId"
-        ><select name="filterWeaknesses" #weakness id="filterWeaknessesId">
-        <option value="invalid">Fraquezas</option>
-          @for (item of typesList()?.results; track $index) {
-          <option>{{ item.name }}</option>
-          }
-        </select></label
-      >
-      <label for="filterAbilityId"
-        ><select name="filterAbility" #ability id="filterAbilityId">
-        <option value="invalid">habilidades</option>
-          @for (item of abilitiesList()?.results; track $index) {
-          <option>{{ item.name }}</option>
-          }
-        </select></label
-      >
-      <label for="filterHeightId"
-        ><select name="filterHeight" #height id="filterHeightId">
-        <option value="invalid">Altura</option>
-          <option>pequeno</option>
-          <option>normal</option>
-          <option>grande</option>
-        </select></label
-      >
-      <label for="filterWeightId"
-        ><select name="filterWeight" #weight id="filterWeightId">
-        <option value="invalid">Peso</option>
-
-          <option>leve</option>
-          <option>normal</option>
-          <option>pesado</option>
-        </select></label
-      >
-    </div>
-  </form>
-    <app-pokemon-list [selectedFilters]="filters()"/>
+  </div>
+  <!-- <app-pokemon-list [selectedFilters]="filters()"/> -->
 </main>
