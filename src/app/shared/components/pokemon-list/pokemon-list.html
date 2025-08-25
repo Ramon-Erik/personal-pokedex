@@ -1,9 +1,9 @@
 <div class="container">
-  <app-pagination [setTotalItems]="filteredPokemonList().length" [setItemsPerPage]="itemsPerPage" [setCurrentPage]="currentPage"/>
-  <div class="pokemonList">
-    @for (pokemon of slicedList(); track pokemon.id) {
-    <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />
+  @if (pokemonList$ | async; as pokemons) {
+    <div class="pokemonList">
+      @for (pokemon of pokemons; track pokemon.id) {
+        <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />
+      }
+    </div>
     }
-  </div>
-  <app-pagination [setTotalItems]="filteredPokemonList().length" [setItemsPerPage]="itemsPerPage" [setCurrentPage]="currentPage"/>
 </div>

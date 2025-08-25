@@ -1,6 +1,5 @@
 import {
   Component,
-  computed,
   inject,
   Input,
   OnInit,
@@ -8,56 +7,27 @@ import {
 } from '@angular/core';
 import { PokeApi } from '../../../core/pokedex/poke-api';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
-import { Pagination } from '../pagination/pagination';
-import { IFilters } from '../../interface/filters';
-import { filter } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-list',
-  imports: [PokemonItem, Pagination],
+  imports: [PokemonItem, AsyncPipe],
   templateUrl: './pokemon-list.html',
   styleUrl: './pokemon-list.scss',
 })
 export class PokemonList implements OnInit {
   #pokeApiService = inject(PokeApi);
-  public pokemonList = this.#pokeApiService.getPokemonList;
+  public pokemonList$ = this.#pokeApiService.pokemonList$
 
   public itemsPerPage = 20;
   public currentPage = 1;
 
-  public listFilters = signal<IFilters>({
-    id: '',
-    type: '',
-    weakness: '',
-    ability: '',
-    height: '',
-    weight: '',
-  });
-  @Input({ required: true }) set selectedFilters(filters: IFilters) {
-    this.listFilters.set(filters);
+  public pokemonName = signal<string>('none');
+  @Input({ required: true }) set selectedFilters(text: string) {
+    this.pokemonName.set(text);
   }
 
-  public filteredPokemonList = computed(() => {
-    const list = this.pokemonList();
-    const filters = this.listFilters();
-
-    if (!list) {
-      return [];
-    }
-    return list.filter((pokemon) => {
-      if (filters.id && !pokemon.name.includes(filters.id)) return false
-      // if (filters.id && !pokemon.id.toString().includes(filters.id)) return false
-      return true
-    });
-  });
-
-  public slicedList = computed(() => {
-    const start = (this.currentPage - 1) * this.itemsPerPage
-    const end = start + this.itemsPerPage
-    return this.filteredPokemonList().slice(start, end)
-  })
-
   ngOnInit(): void {
-    this.#pokeApiService.httpPokemonList$(null).subscribe();
+    this.#pokeApiService.fetchPokemonList({offset: 0, limit: 0})
   }
 }
