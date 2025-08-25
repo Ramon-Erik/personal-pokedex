@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { forkJoin, Observable, shareReplay, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { IPokemonApiRequest } from '../../shared/interface/pokemon-types-list';
 
 @Injectable({
@@ -10,29 +10,20 @@ export class PokeApi {
   #http = inject(HttpClient);
   #url = 'https://pokeapi.co/api/v2';
 
-  #setPokemonList = signal<Array<any>>([]);
-  get getPokemonList() {
-    return this.#setPokemonList.asReadonly();
+  private readonly pokemonListSubject$ = new BehaviorSubject<Array<any>>([])
+  public readonly pokemonList$ = this.pokemonListSubject$.asObservable()
+  public fetchPokemonList(range: {offset: number, limit: number}) {
+    const url = `${this.#url}/pokemon?offset=${range.offset}&limit=${range.limit}`
+
+    return this.#http.get<IPokemonApiRequest>(url).pipe(
+      switchMap(res => {
+        const requests = res.results.map(pokemon => this.#http.get<{}>(pokemon.url)) 
+        return forkJoin(requests)
+      }),
+      tap(pokemonInfo => this.pokemonListSubject$.next(pokemonInfo))
+    )
   }
-  public httpPokemonList$(range: { offset: number; limit: number } | null): Observable<any> {
-    let customUrl: string
-    if (range) {
-      customUrl = `${this.#url}/pokemon?offset=${range?.offset}&limit=${range?.limit}`
-    } else {
-      customUrl = `${this.#url}/pokemon?limit=20&offset=0`
-    } 
-      return this.#http.get<IPokemonApiRequest>(customUrl).pipe(
-        switchMap(res => {
-          const requests = res.results.map(p => this.#http.get<{}>(p.url))
-          return forkJoin(requests)
-        }),
-        tap(details => {
-          console.log("detalhes adicionados na lista");
-          this.#setPokemonList.set(details)
-        })
-      )
-  }
-    
+
   #setPokemon = signal<any>(null);
   get getPokemon() {
     return this.#setPokemon.asReadonly();
