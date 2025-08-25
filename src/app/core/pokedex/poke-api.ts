@@ -23,14 +23,4 @@ export class PokeApi {
       tap(pokemonInfo => this.pokemonListSubject$.next(pokemonInfo))
     )
   }
-
-  #setPokemon = signal<any>(null);
-  get getPokemon() {
-    return this.#setPokemon.asReadonly();
-  }
-  public httpPokemon$(pokemon: string): Observable<any> {
-    return this.#http.get<any>(pokemon).pipe(
-      shareReplay()
-    )
-  }
 }
