@@ -1,12 +1,26 @@
 @if (!loading()) {
-  <div class="pokemon-card {{pokemon().types[0].type.name}}">
-    <button class="pokemon-image">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon().id}}.png" [alt]="pokemon().name" width="200" height="200"/>
+  <div class="pokemon-card">
+    <!-- {{pokemon().types[0].type.name}} -->
+    <button class="pokemon-image {{pokemon().types[0].type.name}}">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{pokemon().id}}.svg" [alt]="pokemon().name" />
+      <!-- width="200" height="200" -->
     </button>
-    <div class="pokemon-name">
-      <span>
-        {{ pokemon().name }}
-      </span>
+    <div class="pokemon-info">
+      <p class="pokemon-id">
+        <span>&num;{{ pokemon().id }}</span>
+      </p>
+      <p class="pokemon-name">
+        <span>
+          {{ pokemon().name }}
+        </span>
+      </p>
+      <div class="pokemon-types">
+        @for (type of pokemon().types; track $index) {
+          <div class="type-icon {{type.type.name}}">
+            <img class="" src="icons/pokemon-types/{{type.type.name}}.svg" alt="{{type.type.name}}" title="{{type.type.name}}">
+          </div>
+        }
+      </div>
     </div>
   </div>
 } @else {
