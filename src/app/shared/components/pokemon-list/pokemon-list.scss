@@ -10,4 +10,26 @@
     gap: 1rem;
     width: 100%;
   }
+
+  .loadMore {
+    display: flex;
+    justify-content: center;
+    margin: 1.6rem;
+    
+    button {
+      padding: .6rem 2rem;
+      font: inherit;
+      border: none;
+      background: var(--load-more-btn);
+      color: var(--white);
+      border-radius: .4rem;
+      cursor: pointer;
+
+      &:disabled {
+        background: var(--load-more-btn-disabled);
+        cursor: not-allowed;
+        color: var(--gray);
+      }
+    }
+  }
 }

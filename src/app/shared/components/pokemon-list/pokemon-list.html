@@ -5,5 +5,10 @@
         <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />
       }
     </div>
+    <div class="loadMore">
+      <button (click)="loadMorePokemons()" [disabled]="loading$ | async">
+        {{ (loading$ | async) ? 'Carregando...' : 'Carregar  mais'}}
+      </button>
+    </div>
     }
 </div>
