@@ -1,5 +1,6 @@
 :host {
   width: 80%;
+  min-width: fit-content;
 
   .pokemon-card {
     display: flex;
@@ -26,6 +27,78 @@
       }
     }
 
+    .pokemon-image.normal {
+      background: var(--normal-color-alt);
+    }
+
+    .pokemon-image.fire {
+      background: var(--fire-color-alt);
+    }
+
+    .pokemon-image.water {
+      background: var(--water-color-alt);
+    }
+
+    .pokemon-image.electric {
+      background: var(--electric-color-alt);
+    }
+
+    .pokemon-image.grass {
+      background: var(--grass-color-alt);
+    }
+
+    .pokemon-image.ice {
+      background: var(--ice-color-alt);
+    }
+
+    .pokemon-image.fighting {
+      background: var(--fighting-color-alt);
+    }
+
+    .pokemon-image.poison {
+      background: var(--poison-color-alt);
+    }
+
+    .pokemon-image.ground {
+      background: var(--ground-color-alt);
+    }
+
+    .pokemon-image.flying {
+      background: var(--flying-color-alt);
+    }
+
+    .pokemon-image.psychic {
+      background: var(--psychic-color-alt);
+    }
+
+    .pokemon-image.bug {
+      background: var(--bug-color-alt);
+    }
+
+    .pokemon-image.rock {
+      background: var(--rock-color-alt);
+    }
+
+    .pokemon-image.ghost {
+      background: var(--ghost-color-alt);
+    }
+
+    .pokemon-image.dragon {
+      background: var(--dragon-color-alt);
+    }
+
+    .pokemon-image.dark {
+      background: var(--dark-color-alt);
+    }
+
+    .pokemon-image.steel {
+      background: var(--steel-color-alt);
+    }
+
+    .pokemon-image.fairy {
+      background: var(--fairy-color-alt);
+    }
+
     .pokemon-info {
       width: calc(100% - 136px);
       height: 100%;
@@ -45,7 +118,7 @@
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
-        gap: .6rem;
+        gap: 0.6rem;
 
         margin-top: 1rem;
 
@@ -67,150 +140,77 @@
         }
 
         .bug {
-          background: #92bc2c;
-          // box-shadow: 0 0 20px #92bc2c;
+          background: var(--bug-color);
         }
 
         .dark {
-          background: #595761;
-          // box-shadow: 0 0 20px #595761;
+          background: var(--dark-color);
         }
 
         .dragon {
-          background: #0c69c8;
-          // box-shadow: 0 0 20px #0c69c8;
+          background: var(--dragon-color);
         }
 
         .electric {
-          background: #f2d94e;
-          // box-shadow: 0 0 20px #f2d94e;
+          background: var(--electric-color);
         }
 
         .fire {
-          background: #fba54c;
-          // box-shadow: 0 0 20px #fba54c;
+          background: var(--fire-color);
         }
 
         .fairy {
-          background: #ee90e6;
-          // box-shadow: 0 0 20px #ee90e6;
+          background: var(--fairy-color);
         }
 
         .fighting {
-          background: #d3425f;
-          // box-shadow: 0 0 20px #d3425f;
+          background: var(--fighting-color);
         }
 
         .flying {
-          background: #a1bbec;
-          // box-shadow: 0 0 20px #a1bbec;
+          background: var(--flying-color);
         }
 
         .ghost {
-          background: #5f6dbc;
-          // box-shadow: 0 0 20px #5f6dbc;
+          background: var(--ghost-color);
         }
 
         .grass {
-          background: #5fbd58;
-          // box-shadow: 0 0 20px #5fbd58;
+          background: var(--grass-color);
         }
 
         .ground {
-          background: #da7c4d;
-          // box-shadow: 0 0 20px #da7c4d;
+          background: var(--ground-color);
         }
 
         .ice {
-          background: #75d0c1;
-          // box-shadow: 0 0 20px #75d0c1;
+          background: var(--ice-color);
         }
 
         .normal {
-          background: #a0a29f;
-          // box-shadow: 0 0 20px #a0a29f;
+          background: var(--normal-color);
         }
 
         .poison {
-          background: #b763cf;
-          // box-shadow: 0 0 20px #b763cf;
+          background: var(--poison-color);
         }
 
         .psychic {
-          background: #fa8581;
-          // box-shadow: 0 0 20px #fa8581;
+          background: var(--psychic-color);
         }
 
         .rock {
-          background: #c9bb8a;
-          // box-shadow: 0 0 20px #c9bb8a;
+          background: var(--rock-color);
         }
 
         .steel {
-          background: #5695a3;
-          // box-shadow: 0 0 20px #5695a3;
+          background: var(--steel-color);
         }
 
         .water {
-          background: #539ddf;
-          // box-shadow: 0 0 20px #539ddf;
+          background: var(--water-color);
         }
       }
     }
-  }
-
-  .normal {
-    background: #b5b9c4;
-  }
-  .fire {
-    background: #ff9c54;
-  }
-  .water {
-    background: #4a90dd;
-  }
-  .electric {
-    background: #f2cb55;
-  }
-  .grass {
-    background: #49d0b0;
-  }
-  .ice {
-    background: #73cec0;
-  }
-  .fighting {
-    background: #ce416b;
-  }
-  .poison {
-    background: #b567ce;
-  }
-  .ground {
-    background: #d97845;
-  }
-  .flying {
-    background: #89aae3;
-  }
-  .psychic {
-    background: #fa7179;
-  }
-  .bug {
-    background: #8bd674;
-  }
-  .rock {
-    background: #c5b78c;
-  }
-  .ghost {
-    background: #8571be;
-  }
-  .dragon {
-    background: #0a6dc4;
-  }
-  .dark {
-    background: #5a5465;
-  }
-  .steel {
-    background: #4c91b2;
-  }
-  .fairy {
-    background: #ec8fe6;
   }
 }

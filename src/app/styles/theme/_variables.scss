@@ -1,10 +1,50 @@
 :root {
-    --search-input-color: #555;
-    --queen-blue: #376BBB;
-    --load-more-btn: #376BBB;
-    --load-more-btn-disabled: #254370;
-    --home-background: #f9f9f9;
-    --card-shadow: 0px 0px 16px 0px #00000018;
-    --white: #fff;
-    --gray: #ccc;
+  --search-input-color: #555;
+  --queen-blue: #376bbb;
+  --load-more-btn: #376bbb;
+  --load-more-btn-disabled: #254370;
+  --home-background: #f9f9f9;
+  --card-shadow: 0px 0px 16px 0px #00000018;
+  --white: #fff;
+  --gray: #ccc;
+
+//   pokemon type icon color
+  --bug-color: #92bc2c;
+  --dark-color: #595761;
+  --dragon-color: #0c69c8;
+  --electric-color: #f2d94e;
+  --fire-color: #fba54c;
+  --fairy-color: #ee90e6;
+  --fighting-color: #d3425f;
+  --flying-color: #a1bbec;
+  --ghost-color: #5f6dbc;
+  --grass-color: #5fbd58;
+  --ground-color: #da7c4d;
+  --ice-color: #75d0c1;
+  --normal-color: #a0a29f;
+  --poison-color: #b763cf;
+  --psychic-color: #fa8581;
+  --rock-color: #c9bb8a;
+  --steel-color: #5695a3;
+  --water-color: #539ddf;
+
+  // pokemon button background
+  --normal-color-alt: #b5b9c4;
+  --fire-color-alt: #ff9c54;
+  --water-color-alt: #4a90dd;
+  --electric-color-alt: #f2cb55;
+  --grass-color-alt: #49d0b0;
+  --ice-color-alt: #73cec0;
+  --fighting-color-alt: #ce416b;
+  --poison-color-alt: #b567ce;
+  --ground-color-alt: #d97845;
+  --flying-color-alt: #89aae3;
+  --psychic-color-alt: #fa7179;
+  --bug-color-alt: #8bd674;
+  --rock-color-alt: #c5b78c;
+  --ghost-color-alt: #8571be;
+  --dragon-color-alt: #0a6dc4;
+  --dark-color-alt: #5a5465;
+  --steel-color-alt: #4c91b2;
+  --fairy-color-alt: #ec8fe6;
 }
