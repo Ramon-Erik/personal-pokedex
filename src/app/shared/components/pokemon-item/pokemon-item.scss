@@ -1,6 +1,6 @@
 :host {
-  width: 80%;
-  min-width: fit-content;
+  // width: 80%;
+  width: 275px;
 
   .pokemon-card {
     display: flex;
@@ -11,7 +11,7 @@
     height: 170px;
     padding: 0.7rem;
 
-    border-radius: 1rem;
+    border-radius: .4rem;
     background: var(--white);
     box-shadow: var(--card-shadow);
 
