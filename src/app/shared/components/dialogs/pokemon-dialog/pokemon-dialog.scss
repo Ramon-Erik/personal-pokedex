@@ -1,0 +1,24 @@
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: .3125rem;
+  overflow-y: visible;
+  width: 40.625rem;
+}
+
+.container {
+  position: relative;
+
+  header {
+    button {
+      position: absolute;
+      top: -2.75rem;
+      right: 0;
+
+      padding: .625rem;
+      font-weight: bold;
+
+      border: none;
+      background: var(--white);
+      border-radius: .2005rem;
+    }
+  }
+}

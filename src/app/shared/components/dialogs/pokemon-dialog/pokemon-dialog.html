@@ -1,0 +1,35 @@
+<div class="container">
+  <mat-dialog-content>
+    <header>
+      <button (click)="closeModal()">X</button>
+      <h2>
+        {{ getPokemon().name }}
+        <span>&num;{{ getPokemon().id }}</span>
+      </h2>
+      <div class="types">
+        @for (type of getPokemon().types; track $index) {
+        <span>{{ type.type.name }}</span>
+        }
+      </div>
+    </header>
+    <div class="pokemon-body-stats">
+      <p class="weight">
+        Peso: <span>{{ getPokemon().weight / 10 }} Kg</span>
+      </p>
+      <p class="height">
+        Altura:
+        <span>{{ getPokemon().height / 10 }} m</span>
+      </p>
+    </div>
+    <div class="pokemon-abilities-stats">
+      @for (stat of getPokemon().stats; track $index) {
+      <div class="{{ stat.stat.name }}">
+        <p>
+          <span class="stat-name">{{ stat.stat.name }}</span
+          >: <span>{{ stat.base_stat }}</span>
+        </p>
+      </div>
+      }
+    </div>
+  </mat-dialog-content>
+</div>
