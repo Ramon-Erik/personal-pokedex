@@ -176,6 +176,14 @@
     .abilities-stat-value {
       width: calc(100% - 6.875rem);
       flex-grow: 1;
+      
+      .progress-bar mat-progress-bar {
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        height: 1.25rem;
+      }
+      
       :not(:last-child) {
         margin-bottom: 1rem;
       }

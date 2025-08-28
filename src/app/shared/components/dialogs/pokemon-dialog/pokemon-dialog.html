@@ -29,12 +29,13 @@
       </div>
       <div class="abilities-stat-value">
         @for (stat of getPokemon().stats; track $index) {
-          <mat-progress-bar
-            class="example-margin"
-            mode="determinate"
-            [value]="stat.base_stat">
-          </mat-progress-bar> 
-          <div>{{ stat.base_stat }}</div>
+          <div class="progress-bar">
+            <mat-progress-bar
+              class="example-margin"
+              mode="determinate"
+              [value]="calculateStatsPercentage(stat.base_stat, stat.stat.name)">
+            </mat-progress-bar> 
+          </div>
         }
       </div>
     </div>
