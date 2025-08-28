@@ -1,5 +1,5 @@
 ::ng-deep .mat-mdc-dialog-surface {
-  border-radius: .3125rem;
+  border-radius: 0.3125rem;
   overflow-y: visible;
   width: 40.625rem;
 }
@@ -8,17 +8,177 @@
   position: relative;
 
   header {
+    .pokemon-name {
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+      text-align: center;
+    }
+
     button {
       position: absolute;
       top: -2.75rem;
       right: 0;
 
-      padding: .625rem;
+      padding: 0.625rem;
       font-weight: bold;
 
       border: none;
       background: var(--white);
-      border-radius: .2005rem;
+      border-radius: 0.2005rem;
+    }
+
+    .types {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+      margin: 0.375rem 0;
+
+      span {
+        padding: 0.4rem;
+      }
+
+      .type-bug {
+        color: var(--bug-type);
+      }
+      .type-dark {
+        color: var(--dark-type);
+      }
+      .type-dragon {
+        color: var(--dragon-type);
+      }
+      .type-electric {
+        color: var(--electric-type);
+      }
+      .type-fairy {
+        color: var(--fairy-type);
+      }
+      .type-fighting {
+        color: var(--fighting-type);
+      }
+      .type-ground {
+        color: var(--ground-type);
+      }
+      .type-ice {
+        color: var(--ice-type);
+      }
+      .type-normal {
+        color: var(--normal-type);
+      }
+      .type-poison {
+        color: var(--poison-type);
+      }
+      .type-psychic {
+        color: var(--psychic-type);
+      }
+      .type-rock {
+        color: var(--rock-type);
+      }
+      .type-ghost {
+        color: var(--ghost-type);
+      }
+      .type-grass {
+        color: var(--grass-type);
+      }
+      .type-steel {
+        color: var(--steel-type);
+      }
+      .type-water {
+        color: var(--water-type);
+      }
+      .type-fire {
+        color: var(--fire-type);
+      }
+      .type-flying {
+        color: var(--flying-type);
+      }
+
+      .type-bug-bg {
+        background-color: var(--bug-type-bg);
+      }
+      .type-dark-bg {
+        background-color: var(--dark-type-bg);
+      }
+      .type-dragon-bg {
+        background-color: var(--dragon-type-bg);
+      }
+      .type-electric-bg {
+        background-color: var(--electric-type-bg);
+      }
+      .type-fairy-bg {
+        background-color: var(--fairy-type-bg);
+      }
+      .type-fighting-bg {
+        background-color: var(--fighting-type-bg);
+      }
+      .type-ground-bg {
+        background-color: var(--ground-type-bg);
+      }
+      .type-ice-bg {
+        background-color: var(--ice-type-bg);
+      }
+      .type-normal-bg {
+        background-color: var(--normal-type-bg);
+      }
+      .type-poison-bg {
+        background-color: var(--poison-type-bg);
+      }
+      .type-psychic-bg {
+        background-color: var(--psychic-type-bg);
+      }
+      .type-rock-bg {
+        background-color: var(--rock-type-bg);
+      }
+      .type-ghost-bg {
+        background-color: var(--ghost-type-bg);
+      }
+      .type-grass-bg {
+        background-color: var(--grass-type-bg);
+      }
+      .type-steel-bg {
+        background-color: var(--steel-type-bg);
+      }
+      .type-water-bg {
+        background-color: var(--water-type-bg);
+      }
+      .type-fire-bg {
+        background-color: var(--fire-type-bg);
+      }
+      .type-flying-bg {
+        background-color: var(--flying-type-bg);
+      }
+    }
+
+  }
+
+  .pokemon-body-stats {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+
+    margin: 1.5rem 0;
+  }
+  
+  .pokemon-abilities-stats {
+    display: flex;
+    gap: .5rem;
+
+    .abilities-stat-name {
+      width: 6.875rem;
+      flex-shrink: 0;
+      text-align: end;
+      
+      :not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+    
+    .abilities-stat-value {
+      width: calc(100% - 6.875rem);
+      flex-grow: 1;
+      :not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

@@ -2,13 +2,13 @@
   <mat-dialog-content>
     <header>
       <button (click)="closeModal()">X</button>
-      <h2>
+      <h2 class="pokemon-name">
         {{ getPokemon().name }}
         <span>&num;{{ getPokemon().id }}</span>
       </h2>
       <div class="types">
         @for (type of getPokemon().types; track $index) {
-        <span>{{ type.type.name }}</span>
+        <span [class]="'type-' + type.type.name + ' type-' + type.type.name + '-bg'">{{ type.type.name }}</span>
         }
       </div>
     </header>
@@ -22,14 +22,21 @@
       </p>
     </div>
     <div class="pokemon-abilities-stats">
-      @for (stat of getPokemon().stats; track $index) {
-      <div class="{{ stat.stat.name }}">
-        <p>
-          <span class="stat-name">{{ stat.stat.name }}</span
-          >: <span>{{ stat.base_stat }}</span>
-        </p>
+      <div class="abilities-stat-name">
+        @for (stat of getPokemon().stats; track $index) {
+          <div class="stat-name">{{ stat.stat.name }}</div>
+        }
       </div>
-      }
+      <div class="abilities-stat-value">
+        @for (stat of getPokemon().stats; track $index) {
+          <mat-progress-bar
+            class="example-margin"
+            mode="determinate"
+            [value]="stat.base_stat">
+          </mat-progress-bar> 
+          <div>{{ stat.base_stat }}</div>
+        }
+      </div>
     </div>
   </mat-dialog-content>
 </div>
