@@ -47,4 +47,45 @@
   --dark-color-alt: #5a5465;
   --steel-color-alt: #4c91b2;
   --fairy-color-alt: #ec8fe6;
+
+  // pokemon types on modal
+  --bug-type: #9BBA48;
+  --dark-type: #595761;
+  --dragon-type: #2C6AC1;
+  --electric-type: #D4BC34;
+  --fairy-type: #E296E1;
+  --fighting-type: #C44D61;
+  --ground-type: #CE8056;
+  --ice-type: #71BAAC;
+  --normal-type: #909090;
+  --poison-type: #AC6ACA;
+  --psychic-type: #EB8B85;
+  --rock-type: #84BEB3;
+  --ghost-type: #616EB7;
+  --grass-type: #73B861;
+  --steel-type: #6594A1;
+  --water-type: #4F77BE;
+  --fire-type: #E96303;
+  --flying-type: #758CBD;
+
+  /* background colors (20% opacity) */
+  --bug-type-bg: color-mix(in srgb, var(--bug-type) 20%, transparent);
+  --dark-type-bg: color-mix(in srgb, var(--dark-type) 20%, transparent);
+  --dragon-type-bg: color-mix(in srgb, var(--dragon-type) 20%, transparent);
+  --electric-type-bg: color-mix(in srgb, var(--electric-type) 20%, transparent);
+  --fairy-type-bg: color-mix(in srgb, var(--fairy-type) 20%, transparent);
+  --fighting-type-bg: color-mix(in srgb, var(--fighting-type) 20%, transparent);
+  --ground-type-bg: color-mix(in srgb, var(--ground-type) 20%, transparent);
+  --ice-type-bg: color-mix(in srgb, var(--ice-type) 20%, transparent);
+  --normal-type-bg: color-mix(in srgb, var(--normal-type) 20%, transparent);
+  --poison-type-bg: color-mix(in srgb, var(--poison-type) 20%, transparent);
+  --psychic-type-bg: color-mix(in srgb, var(--psychic-type) 20%, transparent);
+  --rock-type-bg: color-mix(in srgb, var(--rock-type) 20%, transparent);
+  --ghost-type-bg: color-mix(in srgb, var(--ghost-type) 20%, transparent);
+  --grass-type-bg: color-mix(in srgb, var(--grass-type) 20%, transparent);
+  --steel-type-bg: color-mix(in srgb, var(--steel-type) 20%, transparent);
+  --water-type-bg: color-mix(in srgb, var(--water-type) 20%, transparent);
+  --fire-type-bg: color-mix(in srgb, var(--fire-type) 20%, transparent);
+  --flying-type-bg: color-mix(in srgb, var(--flying-type) 20%, transparent);
+  --azul-primary: #3F5DB3;
 }
