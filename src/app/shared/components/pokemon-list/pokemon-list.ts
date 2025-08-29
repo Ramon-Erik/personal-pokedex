@@ -32,7 +32,6 @@ export class PokemonList implements OnInit {
   public loadMorePokemons() {
     let currentLength = this.#pokeApiService.pokemonListLength
     this.#pokeApiService.fetchPokemonList({offset: currentLength, limit: 20})
-    console.log(currentLength/20+1);
     
   }
 

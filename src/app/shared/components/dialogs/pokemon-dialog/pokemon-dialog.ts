@@ -30,7 +30,7 @@ export class PokemonDialog implements OnInit {
     'speed': 200
   };
 
-  calculateStatsPercentage(stats: number, nameStats: string): number {
+  public calculateStatsPercentage(stats: number, nameStats: string): number {
     const maxStat = this.maxStats[nameStats as keyof typeof this.maxStats] || 100
     return (stats / maxStat) * 100
   }
