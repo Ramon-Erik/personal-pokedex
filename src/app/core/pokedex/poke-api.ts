@@ -5,11 +5,14 @@ import {
   catchError,
   finalize,
   forkJoin,
+  map,
+  Observable,
   of,
   switchMap,
   tap,
 } from 'rxjs';
 import { IPokemonApiRequest } from '../../shared/interface/pokemon-list';
+import { IDamageRelations, IPokemonTypeResponse } from '../../shared/interface/pokemon-type-relations';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +56,15 @@ export class PokeApi {
         finalize(() => this.loadingSubject$.next(false))
       )
       .subscribe()
+  }
+
+  public fetchPokemonTypeRelations(pokemonTypes: string[]): Observable<Array<IDamageRelations>> {
+    const requests = pokemonTypes.map(type => 
+      this.#http.get<IPokemonTypeResponse>(`${this.#url}/type/${type}`).pipe(
+        map(data => data.damage_relations)
+      )
+    )
+    return forkJoin(requests)
   }
 
   get pokemonListLength() {
