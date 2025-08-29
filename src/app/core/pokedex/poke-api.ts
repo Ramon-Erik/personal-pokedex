@@ -9,7 +9,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { IPokemonApiRequest } from '../../shared/interface/pokemon-types-list';
+import { IPokemonApiRequest } from '../../shared/interface/pokemon-list';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,6 @@ export class PokeApi {
   
   public fetchPokemonList(range: { offset: number; limit: number }) {
     if (this.loadingSubject$.getValue()) {
-      console.log('eita');
-      
       return
     }
 
