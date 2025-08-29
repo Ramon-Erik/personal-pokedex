@@ -37,153 +37,258 @@
       span {
         padding: 0.4rem;
       }
-
-      .type-bug {
-        color: var(--bug-type);
-      }
-      .type-dark {
-        color: var(--dark-type);
-      }
-      .type-dragon {
-        color: var(--dragon-type);
-      }
-      .type-electric {
-        color: var(--electric-type);
-      }
-      .type-fairy {
-        color: var(--fairy-type);
-      }
-      .type-fighting {
-        color: var(--fighting-type);
-      }
-      .type-ground {
-        color: var(--ground-type);
-      }
-      .type-ice {
-        color: var(--ice-type);
-      }
-      .type-normal {
-        color: var(--normal-type);
-      }
-      .type-poison {
-        color: var(--poison-type);
-      }
-      .type-psychic {
-        color: var(--psychic-type);
-      }
-      .type-rock {
-        color: var(--rock-type);
-      }
-      .type-ghost {
-        color: var(--ghost-type);
-      }
-      .type-grass {
-        color: var(--grass-type);
-      }
-      .type-steel {
-        color: var(--steel-type);
-      }
-      .type-water {
-        color: var(--water-type);
-      }
-      .type-fire {
-        color: var(--fire-type);
-      }
-      .type-flying {
-        color: var(--flying-type);
-      }
-
-      .type-bug-bg {
-        background-color: var(--bug-type-bg);
-      }
-      .type-dark-bg {
-        background-color: var(--dark-type-bg);
-      }
-      .type-dragon-bg {
-        background-color: var(--dragon-type-bg);
-      }
-      .type-electric-bg {
-        background-color: var(--electric-type-bg);
-      }
-      .type-fairy-bg {
-        background-color: var(--fairy-type-bg);
-      }
-      .type-fighting-bg {
-        background-color: var(--fighting-type-bg);
-      }
-      .type-ground-bg {
-        background-color: var(--ground-type-bg);
-      }
-      .type-ice-bg {
-        background-color: var(--ice-type-bg);
-      }
-      .type-normal-bg {
-        background-color: var(--normal-type-bg);
-      }
-      .type-poison-bg {
-        background-color: var(--poison-type-bg);
-      }
-      .type-psychic-bg {
-        background-color: var(--psychic-type-bg);
-      }
-      .type-rock-bg {
-        background-color: var(--rock-type-bg);
-      }
-      .type-ghost-bg {
-        background-color: var(--ghost-type-bg);
-      }
-      .type-grass-bg {
-        background-color: var(--grass-type-bg);
-      }
-      .type-steel-bg {
-        background-color: var(--steel-type-bg);
-      }
-      .type-water-bg {
-        background-color: var(--water-type-bg);
-      }
-      .type-fire-bg {
-        background-color: var(--fire-type-bg);
-      }
-      .type-flying-bg {
-        background-color: var(--flying-type-bg);
-      }
     }
-
   }
 
   .pokemon-body-stats {
     display: flex;
     justify-content: center;
-    gap: .5rem;
+    gap: 0.5rem;
 
     margin: 1.5rem 0;
   }
-  
+
   .pokemon-abilities-stats {
     display: flex;
-    gap: .5rem;
+    gap: 0.5rem;
 
     .abilities-stat-name {
       width: 6.875rem;
       flex-shrink: 0;
       text-align: end;
-      
+
       :not(:last-child) {
         margin-bottom: 1rem;
       }
     }
-    
+
     .abilities-stat-value {
       width: calc(100% - 6.875rem);
       flex-grow: 1;
-      
-      .progress-bar mat-progress-bar  {
-        height: 1.25rem;
-      }
-      
+      padding-top: 0.4rem;
+
       :not(:last-child) {
-        margin-bottom: 1rem;
+        // div {
+        margin-bottom: 1.6rem;
+      }
+
+      .progress-bar {
+        border-radius: 1rem;
+        overflow: hidden;
+
+        .total-progress-line {
+          height: 0.625rem;
+          width: 100%;
+
+          .progress-indicator-line {
+            height: 100%;
+            // background: red;
+          }
+        }
       }
     }
   }
+}
+
+.type-bug {
+  color: var(--bug-type);
+}
+
+.type-bug.progress-indicator-line {
+  background: var(--bug-type);
+}
+.type-dark {
+  color: var(--dark-type);
+}
+
+.type-dark.progress-indicator-line {
+  background: var(--dark-type);
+}
+.type-dragon {
+  color: var(--dragon-type);
+}
+
+.type-dragon.progress-indicator-line {
+  background: var(--dragon-type);
+}
+.type-electric {
+  color: var(--electric-type);
+}
+
+
+.type-electri.progress-indicator-line {
+  background: var(--electric-type);
+}
+.type-fairy {
+  color: var(--fairy-type);
+}
+
+.type-fairy.progress-indicator-line {
+  background: var(--fairy-type);
+}
+.type-fighting {
+  color: var(--fighting-type);
+}
+
+
+.type-fightin.progress-indicator-line {
+  background: var(--fighting-type);
+}
+.type-ground {
+  color: var(--ground-type);
+}
+
+.type-ground.progress-indicator-line {
+  background: var(--ground-type);
+}
+.type-ice {
+  color: var(--ice-type);
+}
+
+.type-ice.progress-indicator-line {
+  background: var(--ice-type);
+}
+.type-normal {
+  color: var(--normal-type);
+}
+
+.type-normal.progress-indicator-line {
+  background: var(--normal-type);
+}
+.type-poison {
+  color: var(--poison-type);
+}
+
+.type-poison.progress-indicator-line {
+  background: var(--poison-type);
+}
+.type-psychic {
+  color: var(--psychic-type);
+}
+
+
+.type-psychic.progress-indicator-line {
+  background: var(--psychic-type);
+}
+.type-rock {
+  color: var(--rock-type);
+}
+
+.type-rock.progress-indicator-line {
+  background: var(--rock-type);
+}
+.type-ghost {
+  color: var(--ghost-type);
+}
+
+.type-ghost.progress-indicator-line {
+  background: var(--ghost-type);
+}
+.type-grass {
+  color: var(--grass-type);
+}
+
+.type-grass.progress-indicator-line {
+  background: var(--grass-type);
+}
+.type-steel {
+  color: var(--steel-type);
+}
+
+.type-steel.progress-indicator-line {
+  background: var(--steel-type);
+}
+.type-water {
+  color: var(--water-type);
+}
+
+.type-water.progress-indicator-line {
+  background: var(--water-type);
+}
+.type-fire {
+  color: var(--fire-type);
+}
+
+.type-fire.progress-indicator-line {
+  background: var(--fire-type);
+}
+.type-flying {
+  color: var(--flying-type);
+}
+
+.type-flying.progress-indicator-line {
+  background: var(--flying-type);
+}
+
+.type-bug-bg,
+.type-bug-bg .total-progress-line {
+  background: var(--bug-type-bg);
+}
+.type-dark-bg,
+.type-dark-bg .total-progress-line {
+  background: var(--dark-type-bg);
+}
+.type-dragon-bg,
+.type-dragon-bg .total-progress-line {
+  background: var(--dragon-type-bg);
+}
+.type-electric-bg,
+.type-electric-bg .total-progress-line {
+  background: var(--electric-type-bg);
+}
+.type-fairy-bg,
+.type-fairy-bg .total-progress-line {
+  background: var(--fairy-type-bg);
+}
+.type-fighting-bg,
+.type-fighting-bg .total-progress-line {
+  background: var(--fighting-type-bg);
+}
+.type-ground-bg,
+.type-ground-bg .total-progress-line {
+  background: var(--ground-type-bg);
+}
+.type-ice-bg,
+.type-ice-bg .total-progress-line {
+  background: var(--ice-type-bg);
+}
+.type-normal-bg,
+.type-normal-bg .total-progress-line {
+  background: var(--normal-type-bg);
+}
+.type-poison-bg,
+.type-poison-bg .total-progress-line {
+  background: var(--poison-type-bg);
+}
+.type-psychic-bg,
+.type-psychic-bg .total-progress-line {
+  background: var(--psychic-type-bg);
+}
+.type-rock-bg,
+.type-rock-bg .total-progress-line {
+  background: var(--rock-type-bg);
+}
+.type-ghost-bg,
+.type-ghost-bg .total-progress-line {
+  background: var(--ghost-type-bg);
+}
+.type-grass-bg,
+.type-grass-bg .total-progress-line {
+  background: var(--grass-type-bg);
+}
+.type-steel-bg,
+.type-steel-bg .total-progress-line {
+  background: var(--steel-type-bg);
+}
+.type-water-bg,
+.type-water-bg .total-progress-line {
+  background: var(--water-type-bg);
+}
+.type-fire-bg,
+.type-fire-bg .total-progress-line {
+  background: var(--fire-type-bg);
+}
+.type-flying-bg,
+.type-flying-bg .total-progress-line {
+  background: var(--flying-type-bg);
 }
