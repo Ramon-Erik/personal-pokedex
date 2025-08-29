@@ -22,9 +22,6 @@ export class PokemonItem {
   @Input({ required: true }) set pokemonData(pokemonData: IPokemon) {
     this.pokemon.set(pokemonData);
     this.loading.set(false)
-    if (pokemonData.id == 1) {
-      this.openDialog(pokemonData)
-    }
   }
 
 }

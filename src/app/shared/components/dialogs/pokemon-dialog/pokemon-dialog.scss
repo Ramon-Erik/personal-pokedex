@@ -55,7 +55,10 @@
     .abilities-stat-name {
       width: 6.875rem;
       flex-shrink: 0;
+      padding-top: 0.1rem;
+
       text-align: end;
+
 
       :not(:last-child) {
         margin-bottom: 1rem;
@@ -68,8 +71,7 @@
       padding-top: 0.4rem;
 
       :not(:last-child) {
-        // div {
-        margin-bottom: 1.6rem;
+        margin-bottom: 1.09rem;
       }
 
       .progress-bar {
@@ -77,12 +79,19 @@
         overflow: hidden;
 
         .total-progress-line {
-          height: 0.625rem;
+          height: 1.1rem;
           width: 100%;
-
+          
           .progress-indicator-line {
+            position: relative;
             height: 100%;
-            // background: red;
+
+            text-align: end;
+            padding-right: .17rem;
+
+            span {
+              color: var(--white);
+            }
           }
         }
       }

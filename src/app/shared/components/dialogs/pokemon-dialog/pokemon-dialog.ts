@@ -37,7 +37,6 @@ export class PokemonDialog implements OnInit {
 
   ngOnInit(): void {
     this.getPokemon.set(this._data)
-    console.log(this.getPokemon());
   }
 
 }
