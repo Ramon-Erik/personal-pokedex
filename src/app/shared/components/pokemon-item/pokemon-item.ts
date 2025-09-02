@@ -22,6 +22,7 @@ export class PokemonItem {
   @Input({ required: true }) set pokemonData(pokemonData: IPokemon) {
     this.pokemon.set(pokemonData);
     this.loading.set(false)
+    if (pokemonData.id == 6) this.openDialog(pokemonData)
   }
 
 }
