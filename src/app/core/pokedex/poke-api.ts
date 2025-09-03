@@ -23,19 +23,19 @@ export class PokeApi {
 
   private readonly pokemonListSubject$ = new BehaviorSubject<Array<any>>([]);
   public readonly pokemonList$ = this.pokemonListSubject$.asObservable();
-  private readonly loadingSubject$ = new BehaviorSubject<boolean>(false)
-  public readonly loading$ = this.loadingSubject$.asObservable()
-  
+  private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
+  public readonly loading$ = this.loadingSubject$.asObservable();
+
   public fetchPokemonList(range: { offset: number; limit: number }) {
     if (this.loadingSubject$.getValue()) {
-      return
+      return;
     }
 
     const url = `${this.#url}/pokemon?offset=${range.offset}&limit=${
       range.limit
     }`;
 
-    this.loadingSubject$.next(true)
+    this.loadingSubject$.next(true);
 
     this.#http
       .get<IPokemonApiRequest>(url)
@@ -51,23 +51,46 @@ export class PokeApi {
         }),
         catchError((err) => {
           console.log(err);
-          return of([])
+          return of([]);
         }),
         finalize(() => this.loadingSubject$.next(false))
       )
-      .subscribe()
+      .subscribe();
   }
 
-  public fetchPokemonTypeRelations(pokemonTypes: string[]): Observable<Array<IDamageRelations>> {
-    const requests = pokemonTypes.map(type => 
+  public fetchPokemonTypeRelations(pokemonTypes: string[]): Observable<any> {
+    const requests = pokemonTypes.map((type) =>
       this.#http.get<IPokemonTypeResponse>(`${this.#url}/type/${type}`).pipe(
-        map(data => data.damage_relations)
+        map((data) => data.damage_relations),
+        catchError((err) => of(null))
       )
-    )
-    return forkJoin(requests)
+    );
+    return forkJoin(requests).pipe(
+      map((demages) => {
+        const no_demage = demages
+          .map((d) => d?.no_damage_from.map((type) => type.name))
+          .flat();
+
+        no_demage.push(
+          ...demages
+            .map((d) => d?.half_damage_from.map((type) => type.name))
+            .flat()
+        );
+
+        const damagesFrom = demages
+          .map((res) => res?.double_damage_from.map((d) => d?.name))
+          .flat()
+          .filter((val, i, arr) => {
+            return i > arr.indexOf(val, i + 1) && !no_demage.includes(val);
+          });
+    console.log(damagesFrom);
+
+        return damagesFrom;
+      })
+    );
   }
 
   get pokemonListLength() {
-    return this.pokemonListSubject$.getValue().length
+    return this.pokemonListSubject$.getValue().length;
   }
 }

@@ -41,5 +41,10 @@
         }
       </div>
     </div>
+    <div class="weaknesses">
+      <!-- @if (pokemonWeaknesses$ | async; as weaknesses ) { -->
+        @for (item of pokemonWeaknesses$ | async; track $index) {}
+      <!-- } -->
+    </div>
   </mat-dialog-content>
 </div>
