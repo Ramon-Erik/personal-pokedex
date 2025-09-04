@@ -15,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class PokemonDialog implements OnInit {
   #pokeApiService = inject(PokeApi);
-  public pokemonWeaknesses$ = new Observable()
+  public pokemonWeaknesses$ = new Observable<string[]>()
 
   constructor(
     private _dialogRef: MatDialogRef<PokemonDialog>,

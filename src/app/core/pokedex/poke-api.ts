@@ -83,7 +83,6 @@ export class PokeApi {
           .filter((val, i, arr) => {
             return i > arr.indexOf(val, i + 1) && !no_demage.includes(val);
           });
-    console.log(damagesFrom);
 
         return damagesFrom;
       })
