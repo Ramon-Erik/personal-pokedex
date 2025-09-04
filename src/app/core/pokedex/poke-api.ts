@@ -13,6 +13,7 @@ import {
 } from 'rxjs';
 import { IPokemonApiRequest } from '../../shared/interface/pokemon-list';
 import { IDamageRelations, IPokemonTypeResponse } from '../../shared/interface/pokemon-type-relations';
+import { IPokemon } from '../../shared/interface/pokemon-item.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class PokeApi {
   #http = inject(HttpClient);
   #url = 'https://pokeapi.co/api/v2';
 
-  private readonly pokemonListSubject$ = new BehaviorSubject<Array<any>>([]);
+  private readonly pokemonListSubject$ = new BehaviorSubject<IPokemon[]>([]);
   public readonly pokemonList$ = this.pokemonListSubject$.asObservable();
   private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this.loadingSubject$.asObservable();
@@ -42,7 +43,7 @@ export class PokeApi {
       .pipe(
         switchMap((res) =>
           forkJoin(
-            res.results.map((pokemon) => this.#http.get<{}>(pokemon.url))
+            res.results.map((pokemon) => this.#http.get<IPokemon>(pokemon.url))
           )
         ),
         tap((pokemonInfo) => {
