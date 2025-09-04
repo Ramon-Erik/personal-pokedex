@@ -42,14 +42,14 @@
       </div>
     </div>
     <div class="weaknesses">
+      @if (pokemonWeaknesses$ | async; as weaknesses ) {
       <h3>weaknesses</h3>
       <div class="types">
-        @if (pokemonWeaknesses$ | async; as weaknesses ) {
           @for (item of weaknesses; track $index) {
             <span [class]="'type-' + item + ' type-' + item + '-bg'">{{item}}</span>
           }
-        }
-      </div>
+        </div>
+      }
     </div>
   </mat-dialog-content>
 </div>
