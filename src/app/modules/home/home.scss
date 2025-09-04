@@ -10,12 +10,44 @@
     margin: auto;
     padding: 0 1rem 1rem;
 
-    .searchPokemon label {
-      position: relative;
-      display: block;
-      width: 100%;
-      max-width: 566px;
-      margin: auto;
+    .searchPokemon {
+      .hidden-filters,
+      .selects label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .hidden-filters {
+        margin-top: 1rem;
+
+        p {
+          color: var(--gray);
+        }
+  
+        .selects {
+          display: flex;
+          gap: 1rem;
+          margin-top: 1rem;
+
+          select {
+            margin-top: .3125rem;
+            padding: .375rem;
+            background: var(--white);
+            box-shadow: var(--card-shadow);
+            border: none;
+            border-radius: .3125rem;
+          }
+        }
+      }
+
+      label {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: 566px;
+        margin: auto;
+      }
 
       #pokemonId {
         width: 100%;

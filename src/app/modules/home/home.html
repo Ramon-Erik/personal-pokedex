@@ -7,13 +7,41 @@
 </header>
 <main>
   <div class="searchPokemon">
-    <label for="pokemonId">
-      <input type="text" name="pokemonId" #pokeId id="pokemonId" autocomplete="off"
-        placeholder="Digite um nome ou id de pokemon" />
-      <button type="button" id="searchBtn">
-        <img src="icons/search.svg" alt="pesquisar" width="30" height="30" />
-      </button>
-    </label>
+    <form>
+      <label for="pokemonId">
+        <input type="text" name="pokemonId" #pokeId id="pokemonId" autocomplete="off"
+          placeholder="Digite um nome ou id de pokemon" />
+        <button type="button" id="searchBtn">
+          <img src="icons/search.svg" alt="pesquisar" width="30" height="30" />
+        </button>
+      </label>
+
+      <div class="hidden-filters">
+      @if (!hideTypes()) {
+          <p class="hideButton" (click)="hideTypes.set(true)">Esconder</p>
+          <div class="selects">
+            <label for="pokemonType">
+              Tipo
+              <select name="pokemonType" id="pokemonType">
+                @for (type of pokemonTypes; track $index) {
+                  <option>{{type}}</option>
+                }
+              </select>
+            </label>
+            <label for="pokemonWeakness">
+              Fraquezas
+              <select name="pokemonWeakness" id="pokemonWeakness">
+                @for (type of pokemonTypes; track $index) {
+                  <option>{{type}}</option>
+                }
+              </select>
+            </label>
+          </div>
+        } @else {
+          <p class="hideButton" (click)="hideTypes.set(false)">Mais filtros</p>
+        }
+      </div>
+      </form>
   </div>
   <app-pokemon-list [selectedFilters]="setFilter(pokeId.value)"/>
 </main>
