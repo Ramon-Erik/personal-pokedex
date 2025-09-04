@@ -1,5 +1,5 @@
 <div class="container">
-  @if (pokemonList$ | async; as pokemons) {
+  @if (filteredPokemons$ | async; as pokemons) {
     <div class="pokemonList">
       @for (pokemon of pokemons; track pokemon.id) {
         <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />

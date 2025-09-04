@@ -8,7 +8,7 @@ import {
 import { PokeApi } from '../../../core/pokedex/poke-api';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
 import { AsyncPipe } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,21 +18,28 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PokemonList implements OnInit {
   #pokeApiService = inject(PokeApi);
-  public pokemonList$ = this.#pokeApiService.pokemonList$
-  public loading$  = this.#pokeApiService.loading$
-
-  public itemsPerPage = 20;
-  public currentPage = 1;
+  #pokemonList$ = this.#pokeApiService.pokemonList$
 
   public pokemonName = signal<string>('none');
   @Input({ required: true }) set selectedFilters(text: string) {
     this.pokemonName.set(text);
+    this.filterPokemons(text)
+  }
+
+  public filteredPokemons$ = this.#pokemonList$
+  public loading$  = this.#pokeApiService.loading$
+
+  public filterPokemons(filterName: string) {
+    if (filterName) {
+      this.filteredPokemons$ = this.#pokemonList$.pipe(
+        map(pokemon => pokemon.filter(p => p.name.includes(filterName) || p.id == parseInt(filterName)))
+      )
+    }
   }
 
   public loadMorePokemons() {
     let currentLength = this.#pokeApiService.pokemonListLength
     this.#pokeApiService.fetchPokemonList({offset: currentLength, limit: 20})
-    
   }
 
   ngOnInit(): void {
