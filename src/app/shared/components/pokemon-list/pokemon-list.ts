@@ -33,7 +33,7 @@ export class PokemonList implements OnInit {
             (p) => 
               ((p.name.includes(filters.name) ||
                 p.id == parseInt(filters.name)) &&
-                (filters.type != "Selecionar" ?  
+                (filters.type != "Todos" ?  
                 p.types
                   .map((type) => type.type.name)
                   .includes(filters.type.toLowerCase())

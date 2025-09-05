@@ -39,7 +39,7 @@ export class Home {
 
   public filters = signal<ListFilter>({
     name: '',
-    type: 'Selecionar',
+    type: 'Todos',
   });
 
   public updateFilters(updatedValue: Partial<ListFilter>) {
