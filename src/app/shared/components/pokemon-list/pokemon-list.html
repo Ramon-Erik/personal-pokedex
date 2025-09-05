@@ -1,5 +1,12 @@
 <div class="container">
   @if (filteredPokemons$ | async; as pokemons) {
+    <div class="listStatus">
+      <p>Mostrando {{pokemons.length}} de {{pokemonListLentgh}} pokemons carregados</p>
+      @if (!pokemons.length) {
+        <br>
+        <p>Nenhum resultado para os filtros selecionados... Tente novos filtros ou carregar mais.</p>
+      }
+    </div>
     <div class="pokemonList">
       @for (pokemon of pokemons; track pokemon.id) {
         <app-pokemon-item [pokemonData]="pokemon" [id]="pokemon.id" />

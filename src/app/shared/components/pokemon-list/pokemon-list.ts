@@ -14,6 +14,7 @@ import { ListFilter } from '../../interface/list-filter';
 export class PokemonList implements OnInit {
   #pokeApiService = inject(PokeApi);
   #pokemonList$ = this.#pokeApiService.pokemonList$;
+  public pokemonListLentgh = 20
 
   public pokemonName = signal<ListFilter>({} as ListFilter);
   @Input({ required: true }) set selectedFilters(filters: ListFilter) {
@@ -47,6 +48,7 @@ export class PokemonList implements OnInit {
 
   public loadMorePokemons() {
     let currentLength = this.#pokeApiService.pokemonListLength;
+    this.pokemonListLentgh = currentLength + 20
     this.#pokeApiService.fetchPokemonList({ offset: currentLength, limit: 20 });
   }
 
