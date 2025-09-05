@@ -1,7 +1,13 @@
 <header>
   <div class="title">
     <h1>
-      <img src="titles-poke-font/pokedex.png" alt="pokedéx" width="200" height="72" title="Pokédex" />
+      <img
+        src="titles-poke-font/pokedex.png"
+        alt="pokedéx"
+        width="200"
+        height="72"
+        title="Pokédex"
+      />
     </h1>
   </div>
 </header>
@@ -9,39 +15,45 @@
   <div class="searchPokemon">
     <form>
       <label for="pokemonId">
-        <input type="text" name="pokemonId" #pokeId id="pokemonId" autocomplete="off"
-          placeholder="Digite um nome ou id de pokemon" />
-        <button type="button" id="searchBtn">
-          <img src="icons/search.svg" alt="pesquisar" width="30" height="30" />
+        <input
+          type="text"
+          name="pokemonId"
+          #pokeId
+          [ngModel]="filters().name"
+          (ngModelChange)="updateFilters({ name: $event})"
+          id="pokemonId"
+          autocomplete="off"
+          placeholder="Digite um nome ou id de pokemon"
+        />
+        <button type="button" id="searchBtn" (click)="clearFilters()">
+          <img src="icons/cancel.png" alt="limpar filtros" width="20" height="20" />
         </button>
       </label>
 
       <div class="hidden-filters">
-      @if (!hideTypes()) {
-          <p class="hideButton" (click)="hideTypes.set(true)">Esconder</p>
-          <div class="selects">
-            <label for="pokemonType">
-              Tipo
-              <select name="pokemonType" id="pokemonType">
-                @for (type of pokemonTypes; track $index) {
-                  <option>{{type}}</option>
-                }
-              </select>
-            </label>
-            <label for="pokemonWeakness">
-              Fraquezas
-              <select name="pokemonWeakness" id="pokemonWeakness">
-                @for (type of pokemonTypes; track $index) {
-                  <option>{{type}}</option>
-                }
-              </select>
-            </label>
-          </div>
+        @if (!hideTypes()) {
+        <p class="hideButton" (click)="hideTypes.set(true)">Esconder</p>
+        <div class="selects">
+          <label for="pokemonType">
+            Tipo
+            <select
+              name="pokemonType"
+              id="pokemonType"
+              [ngModel]="filters().type"
+              (ngModelChange)="updateFilters({ type: $event})"
+            >
+              <option>Selecionar</option>
+              @for (type of pokemonTypes; track $index) {
+              <option>{{ type }}</option>
+              }
+            </select>
+          </label>
+        </div>
         } @else {
-          <p class="hideButton" (click)="hideTypes.set(false)">Mais filtros</p>
+        <p class="hideButton" (click)="hideTypes.set(false)">Filtrar por tipos</p>
         }
       </div>
-      </form>
+    </form>
   </div>
-  <app-pokemon-list [selectedFilters]="setFilter(pokeId.value)"/>
+  <app-pokemon-list [selectedFilters]="filters()" />
 </main>

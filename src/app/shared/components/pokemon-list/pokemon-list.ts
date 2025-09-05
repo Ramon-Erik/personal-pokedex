@@ -1,14 +1,9 @@
-import {
-  Component,
-  inject,
-  Input,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { PokeApi } from '../../../core/pokedex/poke-api';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
+import { ListFilter } from '../../interface/list-filter';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,31 +13,44 @@ import { map } from 'rxjs';
 })
 export class PokemonList implements OnInit {
   #pokeApiService = inject(PokeApi);
-  #pokemonList$ = this.#pokeApiService.pokemonList$
+  #pokemonList$ = this.#pokeApiService.pokemonList$;
 
-  public pokemonName = signal<string>('none');
-  @Input({ required: true }) set selectedFilters(text: string) {
-    this.pokemonName.set(text);
-    this.filterPokemons(text)
+  public pokemonName = signal<ListFilter>({} as ListFilter);
+  @Input({ required: true }) set selectedFilters(filters: ListFilter) {
+    this.pokemonName.set(filters);
+    this.filterPokemons(filters);
   }
 
-  public filteredPokemons$ = this.#pokemonList$
-  public loading$  = this.#pokeApiService.loading$
+  public filteredPokemons$ = this.#pokemonList$;
+  public loading$ = this.#pokeApiService.loading$;
 
-  public filterPokemons(filterName: string) {
-    if (filterName) {
+  public filterPokemons(filters: ListFilter) {
+    
+    if (filters) {
       this.filteredPokemons$ = this.#pokemonList$.pipe(
-        map(pokemon => pokemon.filter(p => p.name.includes(filterName) || p.id == parseInt(filterName)))
-      )
+        map((pokemon) =>
+          pokemon.filter(
+            (p) => 
+              ((p.name.includes(filters.name) ||
+                p.id == parseInt(filters.name)) &&
+                (filters.type != "Selecionar" ?  
+                p.types
+                  .map((type) => type.type.name)
+                  .includes(filters.type.toLowerCase())
+                : true))
+            
+          )
+        )
+      );
     }
   }
 
   public loadMorePokemons() {
-    let currentLength = this.#pokeApiService.pokemonListLength
-    this.#pokeApiService.fetchPokemonList({offset: currentLength, limit: 20})
+    let currentLength = this.#pokeApiService.pokemonListLength;
+    this.#pokeApiService.fetchPokemonList({ offset: currentLength, limit: 20 });
   }
 
   ngOnInit(): void {
-    this.#pokeApiService.fetchPokemonList({offset: 0, limit: 0})
+    this.#pokeApiService.fetchPokemonList({ offset: 0, limit: 0 });
   }
 }
