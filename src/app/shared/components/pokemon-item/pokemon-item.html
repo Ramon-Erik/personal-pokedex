@@ -1,7 +1,7 @@
 @if (!loading()) {
   <div class="pokemon-card">
     <button class="pokemon-image {{pokemon().types[0].type.name}}" (click)="openDialog(pokemon())">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{pokemon().id}}.svg" [alt]="pokemon().name" />
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon().id}}.png" [alt]="pokemon().name" />
     </button>
     <div class="pokemon-info">
       <p cla  ss="pokemon-id">

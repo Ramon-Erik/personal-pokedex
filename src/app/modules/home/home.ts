@@ -52,7 +52,7 @@ export class Home {
   public clearFilters() {
     this.filters.set({
       name: '',
-      type: 'Selecionar',
+      type: 'Todos',
     });
   }
 }

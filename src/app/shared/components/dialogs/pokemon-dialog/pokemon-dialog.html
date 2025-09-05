@@ -33,7 +33,7 @@
             <div class="total-progress-line">
               <div 
               class="type-{{getPokemon().types[0].type.name}} progress-indicator-line" 
-              [style.width.%]="calculateStatsPercentage(stat.base_stat, stat.stat.name)">
+              [style.width.%]="calculateStatsPercentage(stat.base_stat, stat.stat.name)" [style.minWidth.px]="20">
               <span>{{stat.base_stat}}</span>
             </div>
             </div>
