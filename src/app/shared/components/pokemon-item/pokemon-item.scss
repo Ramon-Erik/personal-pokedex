@@ -28,75 +28,75 @@
     }
 
     .pokemon-image.normal {
-      background: var(--normal-color-alt);
+      background: var(--normal-type-bg);
     }
 
     .pokemon-image.fire {
-      background: var(--fire-color-alt);
+      background: var(--fire-type-bg);
     }
 
     .pokemon-image.water {
-      background: var(--water-color-alt);
+      background: var(--water-type-bg);
     }
 
     .pokemon-image.electric {
-      background: var(--electric-color-alt);
+      background: var(--electric-type-bg);
     }
 
     .pokemon-image.grass {
-      background: var(--grass-color-alt);
+      background: var(--grass-type-bg);
     }
 
     .pokemon-image.ice {
-      background: var(--ice-color-alt);
+      background: var(--ice-type-bg);
     }
 
     .pokemon-image.fighting {
-      background: var(--fighting-color-alt);
+      background: var(--fighting-type-bg);
     }
 
     .pokemon-image.poison {
-      background: var(--poison-color-alt);
+      background: var(--poison-type-bg);
     }
 
     .pokemon-image.ground {
-      background: var(--ground-color-alt);
+      background: var(--ground-type-bg);
     }
 
     .pokemon-image.flying {
-      background: var(--flying-color-alt);
+      background: var(--flying-type-bg);
     }
 
     .pokemon-image.psychic {
-      background: var(--psychic-color-alt);
+      background: var(--psychic-type-bg);
     }
 
     .pokemon-image.bug {
-      background: var(--bug-color-alt);
+      background: var(--bug-type-bg);
     }
 
     .pokemon-image.rock {
-      background: var(--rock-color-alt);
+      background: var(--rock-type-bg);
     }
 
     .pokemon-image.ghost {
-      background: var(--ghost-color-alt);
+      background: var(--ghost-type-bg);
     }
 
     .pokemon-image.dragon {
-      background: var(--dragon-color-alt);
+      background: var(--dragon-type-bg);
     }
 
     .pokemon-image.dark {
-      background: var(--dark-color-alt);
+      background: var(--dark-type-bg);
     }
 
     .pokemon-image.steel {
-      background: var(--steel-color-alt);
+      background: var(--steel-type-bg);
     }
 
     .pokemon-image.fairy {
-      background: var(--fairy-color-alt);
+      background: var(--fairy-type-bg);
     }
 
     .pokemon-info {
@@ -125,8 +125,8 @@
         .type-icon {
           position: relative;
           border-radius: 100%;
-          height: 2.5rem;
-          width: 2.5rem;
+          height: 1.9rem;
+          width: 1.9rem;
           transition: 200ms all;
 
           img {
