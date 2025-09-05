@@ -40,7 +40,7 @@
               name="pokemonType"
               id="pokemonType"
               [ngModel]="filters().type"
-              (ngModelChange)="updateFilters({ type: $event})"
+              (ngModelChange)="updateFilters({ type: $event })"
             >
               <option>Todos</option>
               @for (type of pokemonTypes; track $index) {
