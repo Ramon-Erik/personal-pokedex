@@ -10,26 +10,6 @@
         <strong>{{pokemon().name}}</strong>
       </p>
     </div>
-
-  <!-- <div class="pokemon-card">
-    <div class="pokemon-info">
-      <p cla  ss="pokemon-id">
-        <span>&num;{{ pokemon().id }}</span>
-      </p>
-      <p class="pokemon-name">
-        <span>
-          {{ pokemon().name }}
-        </span>
-      </p>
-      <div class="pokemon-types">
-        @for (type of pokemon().types; track $index) {
-          <div class="type-icon {{type.type.name}}">
-            <img src="icons/pokemon-types/{{type.type.name}}.svg" alt="{{type.type.name}}" title="{{type.type.name}}">
-          </div>
-        }
-      </div>
-    </div>
-  </div> -->
 } @else {
   <p>Loading...</p>
 }

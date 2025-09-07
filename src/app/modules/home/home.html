@@ -2,7 +2,8 @@
   <div class="title">
     <h1>
       <img
-        src="titles-poke-font/pokedex.png"
+        ngSrc="titles-poke-font/pokedex.png"
+        priority
         alt="pokedéx"
         width="200"
         height="72"
@@ -55,5 +56,12 @@
       </div>
     </form>
   </div>
-  <app-pokemon-list [selectedFilters]="filters()" />
+  @defer (on timer(500ms)) {
+    <app-pokemon-list [selectedFilters]="filters()" />
+  } @placeholder {
+    <div class="loading">
+      <img src="icons/loading.gif" alt="loading gif" width="50" height="50">
+      <p>Carregando...</p>
+    </div>
+  }
 </main>
