@@ -1,7 +1,9 @@
 <div class="container">
   <mat-dialog-content>
     <header>
-      <button (click)="closeModal()">X</button>
+      <button (click)="closeModal()">
+        <img src="icons/close.svg" alt="Fechar" width="20" height="20">
+      </button>
       <h2 class="pokemon-name">
         {{ getPokemon().name }}
         <span>&num;{{ getPokemon().id }}</span>
