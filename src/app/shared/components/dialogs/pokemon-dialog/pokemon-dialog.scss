@@ -86,10 +86,10 @@
             position: relative;
             height: 100%;
 
-            text-align: end;
-            padding-right: .17rem;
-
             span {
+              position: absolute;
+              top: -1px;
+              right: .1875rem;
               color: var(--white);
             }
           }
