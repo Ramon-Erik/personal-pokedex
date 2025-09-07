@@ -14,7 +14,7 @@ export class Home {
     return text.toLowerCase();
   }
 
-  public hideTypes = signal(false);
+  public hideTypes = signal(true);
 
   public pokemonTypes = [
     'Normal',

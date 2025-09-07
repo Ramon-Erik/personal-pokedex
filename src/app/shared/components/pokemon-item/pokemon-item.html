@@ -1,8 +1,17 @@
 @if (!loading()) {
-  <div class="pokemon-card">
     <button class="pokemon-image {{pokemon().types[0].type.name}}" (click)="openDialog(pokemon())">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon().id}}.png" [alt]="pokemon().name" />
+      <img [src]="pokemon().sprites.front_default" [alt]="pokemon().name" width="110px" height="110px" />
     </button>
+    <div class="pokemon-info">
+      <p class="pokemon-id">
+        #{{pokemon().id}}
+      </p>
+      <p class="pokemon-name">
+        <strong>{{pokemon().name}}</strong>
+      </p>
+    </div>
+
+  <!-- <div class="pokemon-card">
     <div class="pokemon-info">
       <p cla  ss="pokemon-id">
         <span>&num;{{ pokemon().id }}</span>
@@ -20,7 +29,7 @@
         }
       </div>
     </div>
-  </div>
+  </div> -->
 } @else {
   <p>Loading...</p>
 }

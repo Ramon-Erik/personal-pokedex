@@ -18,7 +18,7 @@ export class PokemonItem {
     this.#dialog.open(PokemonDialog, { data })
   }
 
-  public pokemon = signal<any>(null);
+  public pokemon = signal<IPokemon>({} as IPokemon);
   @Input({ required: true }) set pokemonData(pokemonData: IPokemon) {
     this.pokemon.set(pokemonData);
     this.loading.set(false)
