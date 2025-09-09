@@ -11,9 +11,9 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { IPokemonApiRequest } from '../../shared/interface/pokemon-list';
-import { IDamageRelations, IPokemonTypeResponse } from '../../shared/interface/pokemon-type-relations';
-import { IPokemon } from '../../shared/interface/pokemon-item.interface';
+import { PokemonApiRequest } from '../../shared/interface/pokemon-list.interface';
+import { PokemonTypeResponse } from '../../shared/interface/pokemon-type-relations.interface';
+import { Pokemon } from '../../shared/interface/pokemon-item.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +22,13 @@ export class PokeApi {
   #http = inject(HttpClient);
   #url = 'https://pokeapi.co/api/v2';
 
-  private readonly pokemonListSubject$ = new BehaviorSubject<IPokemon[]>([]);
+  private readonly pokemonListSubject$ = new BehaviorSubject<Pokemon[]>([]);
   public readonly pokemonList$ = this.pokemonListSubject$.asObservable();
   private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this.loadingSubject$.asObservable();
 
-  public fetchPokemonList(range: { offset: number; limit: number }) {
-    if (this.loadingSubject$.getValue()) {
+  public fetchPokemonList(range: { offset: number; limit: number }) {  
+    if (this.loadingSubject$.getValue() || range.offset < this.pokemonListLength) {
       return;
     }
 
@@ -39,11 +39,11 @@ export class PokeApi {
     this.loadingSubject$.next(true);
 
     this.#http
-      .get<IPokemonApiRequest>(url)
+      .get<PokemonApiRequest>(url)
       .pipe(
         switchMap((res) =>
           forkJoin(
-            res.results.map((pokemon) => this.#http.get<IPokemon>(pokemon.url))
+            res.results.map((pokemon) => this.#http.get<Pokemon>(pokemon.url))
           )
         ),
         tap((pokemonInfo) => {
@@ -61,7 +61,7 @@ export class PokeApi {
 
   public fetchPokemonTypeRelations(pokemonTypes: string[]): Observable<any> {
     const requests = pokemonTypes.map((type) =>
-      this.#http.get<IPokemonTypeResponse>(`${this.#url}/type/${type}`).pipe(
+      this.#http.get<PokemonTypeResponse>(`${this.#url}/type/${type}`).pipe(
         map((data) => data.damage_relations),
         catchError((err) => of(null))
       )
