@@ -2,7 +2,7 @@ import { Component, inject, Inject, OnInit, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { IPokemon } from '../../../interface/pokemon-item.interface';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PokeApi } from '../../../../core/pokedex/poke-api';
+import { PokeApi } from '../../../../core/pokedex/poke-api.service';
 import { IDamageRelations } from '../../../interface/pokemon-type-relations';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';

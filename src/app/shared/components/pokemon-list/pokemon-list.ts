@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit, signal } from '@angular/core';
-import { PokeApi } from '../../../core/pokedex/poke-api';
+import { PokeApi } from '../../../core/pokedex/poke-api.service';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
