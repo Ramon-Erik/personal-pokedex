@@ -1,1 +1,2 @@
-# Pokédex com angular r typescript
+# Pokédex com angular typescript
+
