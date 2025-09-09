@@ -13,7 +13,7 @@
   </div>
 </header>
 <main>
-  <div class="searchPokemon">
+  <div class="search-pokemon">
     <form>
       <label for="pokemonId">
         <input
@@ -33,7 +33,7 @@
 
       <div class="hidden-filters">
         @if (!hideTypes()) {
-        <p class="hideButton" (click)="hideTypes.set(true)">Esconder</p>
+        <p class="hide-button" (click)="hideTypes.set(true)">Esconder</p>
         <div class="selects">
           <label for="pokemonType">
             Tipo
@@ -51,7 +51,7 @@
           </label>
         </div>
         } @else {
-        <p class="hideButton" (click)="hideTypes.set(false)">Filtrar por tipos</p>
+          <p class="hide-button" (click)="hideTypes.set(false)">Filtrar por tipos</p>
         }
       </div>
     </form>

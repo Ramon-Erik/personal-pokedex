@@ -6,7 +6,7 @@
     margin-top: 1rem;
   }
 
-  .pokemonList {
+  .pokemon-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -14,13 +14,13 @@
     width: 100%;
   }
 
-  .listStatus {
+  .list-status {
     margin-bottom: .625rem;
     text-align: center;
     font-size: small;
   }
 
-  .loadMore {
+  .load-more {
     display: flex;
     flex-direction: column;
     align-items: center;

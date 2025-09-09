@@ -86,7 +86,7 @@ interface Type {
   type: NamedAPIResource;
 }
 
-export interface IPokemon {
+export interface Pokemon {
   id: number;
   name: string;
   base_experience: number;

@@ -1,9 +1,8 @@
 import { Component, inject, Inject, OnInit, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { IPokemon } from '../../../interface/pokemon-item.interface';
+import { Pokemon } from '../../../interface/pokemon-item.interface';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokeApi } from '../../../../core/pokedex/poke-api.service';
-import { IDamageRelations } from '../../../interface/pokemon-type-relations';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -19,10 +18,10 @@ export class PokemonDialog implements OnInit {
 
   constructor(
     private _dialogRef: MatDialogRef<PokemonDialog>,
-    @Inject(MAT_DIALOG_DATA) private _data: IPokemon) {
+    @Inject(MAT_DIALOG_DATA) private _data: Pokemon) {
   }
 
-  public getPokemon = signal<IPokemon>({} as IPokemon)
+  public getPokemon = signal<Pokemon>({} as Pokemon)
 
   public closeModal() {
     this._dialogRef.close()
@@ -42,37 +41,13 @@ export class PokemonDialog implements OnInit {
     return (stats / maxStat) * 100
   }
 
-  public getPokemonTypes(pokemon: IPokemon) {
+  public getPokemonTypes(pokemon: Pokemon) {
     return pokemon.types.map(type => type.type.name)
-  }
-
-  public getPokemonWeaknesses(pokemonTypeRelations: IDamageRelations[]) {
-    const no_demage = pokemonTypeRelations.map(
-      demages => demages.no_damage_from.map(type => type.name)
-    ).flat()
-    
-    no_demage.push(...pokemonTypeRelations.map(
-      demages => demages.half_damage_from.map(type => type.name)
-    ).flat())
-
-    const damagesFrom = pokemonTypeRelations.map(
-      res => res.double_damage_from.map(demages => demages.name)
-    ).flat().filter(
-      (val, i, arr) => {
-        
-        return i > arr.indexOf(val, i+1) && !no_demage.includes(val)
-      } 
-    )
-
-    console.log(damagesFrom);
-    
-    return damagesFrom
   }
 
   ngOnInit(): void {
     this.getPokemon.set(this._data)
     const pokemonType = this.getPokemonTypes(this.getPokemon())
-
     this.pokemonWeaknesses$ = this.#pokeApiService.fetchPokemonTypeRelations(pokemonType)
   }
 

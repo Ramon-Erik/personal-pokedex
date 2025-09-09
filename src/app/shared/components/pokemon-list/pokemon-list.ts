@@ -3,7 +3,7 @@ import { PokeApi } from '../../../core/pokedex/poke-api.service';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
-import { ListFilter } from '../../interface/list-filter';
+import { ListFilter } from '../../interface/list-filter.interface';
 
 @Component({
   selector: 'app-pokemon-list',

@@ -1,7 +1,7 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { PokemonList } from '../../shared/components/pokemon-list/pokemon-list';
 import { FormsModule } from '@angular/forms';
-import { ListFilter } from '../../shared/interface/list-filter';
+import { ListFilter } from '../../shared/interface/list-filter.interface';
 import { NgOptimizedImage } from "@angular/common";
 
 @Component({

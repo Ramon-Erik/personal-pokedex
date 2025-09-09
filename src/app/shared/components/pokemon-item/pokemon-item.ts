@@ -1,7 +1,7 @@
 import { Component, inject, Input, signal } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PokemonDialog } from '../dialogs/pokemon-dialog/pokemon-dialog';
-import { IPokemon } from '../../interface/pokemon-item.interface';
+import { Pokemon } from '../../interface/pokemon-item.interface';
 
 @Component({
   selector: 'app-pokemon-item',
@@ -14,12 +14,12 @@ export class PokemonItem {
   public loading = signal(true);
   #dialog = inject(MatDialog)
 
-  public openDialog(data: IPokemon) {
+  public openDialog(data: Pokemon) {
     this.#dialog.open(PokemonDialog, { data })
   }
 
-  public pokemon = signal<IPokemon>({} as IPokemon);
-  @Input({ required: true }) set pokemonData(pokemonData: IPokemon) {
+  public pokemon = signal<Pokemon>({} as Pokemon);
+  @Input({ required: true }) set pokemonData(pokemonData: Pokemon) {
     this.pokemon.set(pokemonData);
     this.loading.set(false)
   }

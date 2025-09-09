@@ -1,4 +1,4 @@
-export interface IPokemonApiRequest {
+export interface PokemonApiRequest {
   count: number;
   next: string;
   previous: null;
