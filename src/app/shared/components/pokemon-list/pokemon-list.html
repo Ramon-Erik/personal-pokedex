@@ -13,6 +13,9 @@
       }
     </div>
     <div class="loadMore">
+      @if (loading$ | async) {
+        <img src="icons/loading.gif" alt="loading gif" width="50" height="50">
+      }
       <button (click)="loadMorePokemons()" [disabled]="loading$ | async">
         {{ (loading$ | async) ? 'Carregando...' : 'Carregar  mais'}}
       </button>

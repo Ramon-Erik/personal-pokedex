@@ -22,10 +22,18 @@
 
   .loadMore {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 1.6rem;
+    text-align: center;
+    
+    img {
+      margin-bottom: 1rem;
+    } 
     
     button {
+      width: 100%;
+      max-width: 330px;
       padding: .6rem 2rem;
       font: inherit;
       border: none;
