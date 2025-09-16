@@ -11,7 +11,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { PokemonApiRequest } from '../../shared/interface/pokemon-list.interface';
+import { PokemonApiRequest, ITypeResponse } from '../../shared/interface/pokemon-list.interface';
 import { PokemonTypeResponse } from '../../shared/interface/pokemon-type-relations.interface';
 import { Pokemon } from '../../shared/interface/pokemon-item.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -29,14 +29,12 @@ export class PokeApi {
   private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this.loadingSubject$.asObservable();
 
-  public fetchPokemonList(range: { offset: number; limit: number }) {  
-    if (this.loadingSubject$.getValue() || range.offset < this.pokemonListLength) {
+  public fetchPokemonList(range: { offset: number; limit: number }, type = '') {  
+    if (this.loadingSubject$.getValue()) {
       return;
     }
 
-    const url = `${this.#url}/pokemon?offset=${range.offset}&limit=${
-      range.limit
-    }`;
+    const url = `${this.#url}/pokemon?offset=${range.offset}&limit=${range.limit}`;
 
     this.loadingSubject$.next(true);
 
@@ -50,8 +48,13 @@ export class PokeApi {
           )
         ),
         tap((pokemonInfo) => {
-          const currentList = this.pokemonListSubject$.getValue();
-          this.pokemonListSubject$.next([...currentList, ...pokemonInfo]);
+          const currentList = this.pokemonListSubject$.getValue()
+          
+          const filteredPokemons = pokemonInfo.filter(newPokemon => 
+            !currentList.some(pokeInfo => newPokemon.id === pokeInfo.id)
+          )
+
+          this.pokemonListSubject$.next([...currentList, ...filteredPokemons].sort((a, b) => a.id - b.id));
         }),
         catchError((err) => {
           console.log(err);
@@ -91,6 +94,48 @@ export class PokeApi {
         return damagesFrom;
       })
     );
+  }
+
+  public fetchPokemonsByType(type: string, start: number) {
+    if (this.loadingSubject$.getValue() && type != 'Todos') {
+      return;
+    }
+    console.log(type);
+    
+    this.loadingSubject$.next(true);
+    const url = `${this.#url}/type/${type}`;
+    const end = start < 20 ? 20 : 20 + start
+    console.log(start, end, 'carregados: ', end - start);
+    
+
+    this.#http
+      .get<ITypeResponse>(url)
+      .pipe(
+        takeUntilDestroyed(this.#destroyRef),
+        switchMap((res) =>
+          forkJoin(
+            res.pokemon.slice(start, end).map((pokemon) => this.#http.get<Pokemon>(pokemon.pokemon.url))
+          )
+        ),
+        tap((pokemonInfo) => {
+          const currentList = this.pokemonListSubject$.getValue()
+          
+          const filteredPokemons = pokemonInfo.filter(newPokemon => 
+            !currentList.some(pokeInfo => newPokemon.id === pokeInfo.id)
+          )
+
+          this.pokemonListSubject$.next([...currentList, ...filteredPokemons].sort((a, b) => a.id - b.id));
+          console.log(this.pokemonListSubject$.getValue());
+          
+        }),
+        catchError((err) => {
+          console.log(err);
+          return of([]);
+        }),
+        finalize(() => this.loadingSubject$.next(false))
+      )
+      .subscribe();
+
   }
 
   get pokemonListLength() {

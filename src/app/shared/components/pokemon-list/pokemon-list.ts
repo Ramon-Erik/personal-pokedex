@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { PokeApi } from '../../../core/pokedex/poke-api.service';
 import { PokemonItem } from '../pokemon-item/pokemon-item';
 import { AsyncPipe } from '@angular/common';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ListFilter } from '../../interface/list-filter.interface';
 
 @Component({
@@ -15,10 +15,12 @@ export class PokemonList implements OnInit {
   #pokeApiService = inject(PokeApi);
   #pokemonList$ = this.#pokeApiService.pokemonList$;
   public pokemonListLentgh = 20
+  public filteredListLength = 0
+  public lastFilteredListLength = 0
 
-  public pokemonName = signal<ListFilter>({} as ListFilter);
+  public listFilters = signal<ListFilter>({} as ListFilter);
   @Input({ required: true }) set selectedFilters(filters: ListFilter) {
-    this.pokemonName.set(filters);
+    this.listFilters.set(filters);
     this.filterPokemons(filters);
   }
 
@@ -41,7 +43,18 @@ export class PokemonList implements OnInit {
                 : true))
             
           )
-        )
+        ),
+        tap(filteredList => {
+          this.filteredListLength = filteredList.length
+          
+          if (0 < filteredList.length && filteredList.length < 20 && filters.type != 'Todos') {
+            this.lastFilteredListLength = 20 - filteredList.length
+            console.log('ultimo: ', this.lastFilteredListLength);
+            // console.log('quantidade de filtrados: ', filteredList.length);
+            
+            this.#pokeApiService.fetchPokemonsByType(filters.type, filteredList.length)
+          }
+        })
       );
     }
   }
@@ -49,7 +62,17 @@ export class PokemonList implements OnInit {
   public loadMorePokemons() {
     let currentLength = this.#pokeApiService.pokemonListLength;
     this.pokemonListLentgh = currentLength + 20
-    this.#pokeApiService.fetchPokemonList({ offset: currentLength, limit: 20 });
+    if (this.listFilters().type != 'Todos') {
+      this.#pokeApiService.fetchPokemonsByType(this.listFilters().type, this.filteredListLength)
+
+      this.lastFilteredListLength += 20
+    } else {
+      console.log(currentLength, this.filteredListLength, this.lastFilteredListLength) ;
+      const unfilteredPage = currentLength - this.lastFilteredListLength
+      console.log(unfilteredPage);
+      this.#pokeApiService.fetchPokemonList({ offset: unfilteredPage, limit: 20 });
+      this.lastFilteredListLength = 0
+    }
   }
 
   ngOnInit(): void {
