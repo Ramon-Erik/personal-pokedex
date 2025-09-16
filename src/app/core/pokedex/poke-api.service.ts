@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
@@ -14,12 +14,14 @@ import {
 import { PokemonApiRequest } from '../../shared/interface/pokemon-list.interface';
 import { PokemonTypeResponse } from '../../shared/interface/pokemon-type-relations.interface';
 import { Pokemon } from '../../shared/interface/pokemon-item.interface';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokeApi {
   #http = inject(HttpClient);
+  #destroyRef = inject(DestroyRef)
   #url = 'https://pokeapi.co/api/v2';
 
   private readonly pokemonListSubject$ = new BehaviorSubject<Pokemon[]>([]);
@@ -41,6 +43,7 @@ export class PokeApi {
     this.#http
       .get<PokemonApiRequest>(url)
       .pipe(
+        takeUntilDestroyed(this.#destroyRef),
         switchMap((res) =>
           forkJoin(
             res.results.map((pokemon) => this.#http.get<Pokemon>(pokemon.url))
