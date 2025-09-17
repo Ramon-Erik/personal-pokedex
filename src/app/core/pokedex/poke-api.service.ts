@@ -29,7 +29,7 @@ export class PokeApi {
   private readonly loadingSubject$ = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this.loadingSubject$.asObservable();
 
-  public fetchPokemonList(range: { offset: number; limit: number }, type = '') {  
+  public fetchPokemonList(range: { offset: number; limit: number }) {  
     if (this.loadingSubject$.getValue()) {
       return;
     }
@@ -57,7 +57,7 @@ export class PokeApi {
           this.pokemonListSubject$.next([...currentList, ...filteredPokemons].sort((a, b) => a.id - b.id));
         }),
         catchError((err) => {
-          console.log(err);
+          console.error(err);
           return of([]);
         }),
         finalize(() => this.loadingSubject$.next(false))
@@ -100,12 +100,11 @@ export class PokeApi {
     if (this.loadingSubject$.getValue() && type != 'Todos') {
       return;
     }
-    console.log(type);
     
     this.loadingSubject$.next(true);
     const url = `${this.#url}/type/${type}`;
     const end = start < 20 ? 20 : 20 + start
-    console.log(start, end, 'carregados: ', end - start);
+    console.log(start, end);
     
 
     this.#http
@@ -114,22 +113,20 @@ export class PokeApi {
         takeUntilDestroyed(this.#destroyRef),
         switchMap((res) =>
           forkJoin(
-            res.pokemon.slice(start, end).map((pokemon) => this.#http.get<Pokemon>(pokemon.pokemon.url))
+            res.pokemon.slice(start-1, end).map((pokemon) => this.#http.get<Pokemon>(pokemon.pokemon.url))
           )
         ),
         tap((pokemonInfo) => {
           const currentList = this.pokemonListSubject$.getValue()
-          
+
           const filteredPokemons = pokemonInfo.filter(newPokemon => 
             !currentList.some(pokeInfo => newPokemon.id === pokeInfo.id)
           )
 
           this.pokemonListSubject$.next([...currentList, ...filteredPokemons].sort((a, b) => a.id - b.id));
-          console.log(this.pokemonListSubject$.getValue());
-          
         }),
         catchError((err) => {
-          console.log(err);
+          console.error(err);
           return of([]);
         }),
         finalize(() => this.loadingSubject$.next(false))
