@@ -52,6 +52,7 @@ export class PokemonList implements OnInit {
   }
 
   public pokemonListLentgh = 20
+  public searchOffset = 0
   public typeRequestStart = 0
 
   private increaseListLength(amount: number) {
@@ -63,13 +64,14 @@ export class PokemonList implements OnInit {
     if (this.listFilters().type != 'Todos') {
       this.#pokeApiService.fetchPokemonsByType(this.listFilters().type, this.typeRequestStart)
     } else {
-      const unfilteredPage = 20
-      this.#pokeApiService.fetchPokemonList({ offset: unfilteredPage, limit: 20 });
+      this.#pokeApiService.fetchPokemonList({ offset: this.searchOffset, limit: 20 });
+      this.searchOffset += 20
     }
     this.increaseListLength(20)
   }
 
   ngOnInit(): void {
-    this.#pokeApiService.fetchPokemonList({ offset: 0, limit: 0 });
+    this.#pokeApiService.fetchPokemonList({ offset: this.searchOffset, limit: 0 });
+    this.searchOffset += 20
   }
 }
