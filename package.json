@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test", 
+    "gbuild": "ng build --configuration production --base-href 'https://ramon-erik.github.io/personal-pokedex/'",
+    "cbuild": "cp -r dist/personal-pokedex/browser/* dist/personal-pokedex && rm -rf dist/personal-pokedex/browser",
+    "deploy": "npx angular-cli-ghpages --dir=dist/personal-pokedex"
   },
   "prettier": {
     "overrides": [
