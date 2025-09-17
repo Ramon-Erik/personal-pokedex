@@ -104,8 +104,6 @@ export class PokeApi {
     this.loadingSubject$.next(true);
     const url = `${this.#url}/type/${type}`;
     const end = start < 20 ? 20 : 20 + start
-    console.log(start, end);
-    
 
     this.#http
       .get<ITypeResponse>(url)
@@ -113,12 +111,12 @@ export class PokeApi {
         takeUntilDestroyed(this.#destroyRef),
         switchMap((res) =>
           forkJoin(
-            res.pokemon.slice(start-1, end).map((pokemon) => this.#http.get<Pokemon>(pokemon.pokemon.url))
+            res.pokemon.slice(0, end).map((pokemon) => this.#http.get<Pokemon>(pokemon.pokemon.url))
           )
         ),
         tap((pokemonInfo) => {
           const currentList = this.pokemonListSubject$.getValue()
-
+          
           const filteredPokemons = pokemonInfo.filter(newPokemon => 
             !currentList.some(pokeInfo => newPokemon.id === pokeInfo.id)
           )

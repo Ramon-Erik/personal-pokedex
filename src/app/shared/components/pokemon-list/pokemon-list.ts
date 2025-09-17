@@ -43,8 +43,8 @@ export class PokemonList implements OnInit {
           this.typeRequestStart = filteredList.length
           
           if (filteredList.length < 20 && filters.type != 'Todos') {
-            this.increaseListLength(20 - this.typeRequestStart)
             this.#pokeApiService.fetchPokemonsByType(filters.type, filteredList.length)
+            this.increaseListLength(20 - this.typeRequestStart)
           }
         })
       );
