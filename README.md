@@ -40,7 +40,7 @@ O site incia com o request dos primeiros vinte pokemons, mostrando imagem, nome 
 ## Próximos passos:
 
 - Pesquisa de um pokemon por nome na API;
-- Carregar pokemons pelo filtro acionado;
+- Carregar pokemons pelo filtro acionado (FEITO);
 - Carregar os tipos de pokemon para calcular as fraquezas sem  necessidade de novas requisições;
 - Adicionar as fraquezas nos pokemons;
 - Filtrar pokemons por fraqueza;

@@ -71,7 +71,7 @@ export class PokemonList implements OnInit {
   }
 
   ngOnInit(): void {
-    this.#pokeApiService.fetchPokemonList({ offset: this.searchOffset, limit: 0 });
+    this.#pokeApiService.fetchPokemonList({ offset: this.searchOffset, limit: 20 });
     this.searchOffset += 20
   }
 }
